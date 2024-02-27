@@ -18,7 +18,7 @@ export default async function Home() {
   const session = await getServerAuthSession();
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-dark-midnight text-white">
+    <main className="flex calcHeight flex-col items-center pt-20 pb-20 transition-all duration-100 bg-dark-midnight text-white ">
       <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
         <h1 className="text-5xl font-bold tracking-tight sm:text-[5rem]">
           Slug<span className="text-[hsl(280,100%,70%)]">Link</span>
