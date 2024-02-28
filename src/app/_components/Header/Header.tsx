@@ -2,6 +2,7 @@ import { getServerAuthSession } from "~/server/auth";
 import Image from "next/image";
 import Link from "next/link";
 import Auth from "../Auth/Auth";
+import Menu from "../Menu/Menu";
 
 export default async function Header() {
   const session = await getServerAuthSession();
@@ -17,7 +18,10 @@ export default async function Header() {
             height={40}
           />
         </Link>
-        <Auth user={session?.user}/>
+        <div className="flex gap-3 items-center">
+          <Auth user={session?.user}/>
+          <Menu />
+        </div>
       </div>
     </header>
   )
