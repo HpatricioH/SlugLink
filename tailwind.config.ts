@@ -6,7 +6,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        'dark-midnight': '#121212'
+        'dark-midnight': '#121212',
+        'dark-violet': '#cc66ff',
       },
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],

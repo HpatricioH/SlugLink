@@ -1,9 +1,9 @@
-interface HamburgerProps {
+export interface SvgProps {
   className?: string
   onClick?: () => void
 }
 
-export default function HamburgerSvg({ className, ...props }: HamburgerProps) {
+export default function HamburgerSvg({ className, ...props }: SvgProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
