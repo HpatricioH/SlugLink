@@ -18,7 +18,7 @@ export default async function Header() {
             height={40}
           />
         </Link>
-        <div className="flex gap-3 items-center">
+        <div className="flex gap-2 items-center">
           <Auth user={session?.user}/>
           {session && <MenuDropDown />}
         </div>

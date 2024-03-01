@@ -8,6 +8,8 @@ import AddSvg from '~/utils/AddSvg';
 import LogoutSvg from '~/utils/LogoutSvg';
 import LinkSvg from '~/utils/LinkSvg';
 import Link from 'next/link';
+import Button from '~/utils/Button';
+import { useLoadingSession } from '~/store/loadingSession';
 
 const menuOptions = [
   {
@@ -25,7 +27,19 @@ const menuOptions = [
 ]
 
 export default function MenuDropDown() {
+  const { setLoading } = useLoadingSession()
   const menuItemClass = 'group flex w-full rounded-md items-center px-2 py-2 text-md text-white gap-2'
+
+  const handleSingOut = async () => {
+    try {
+      setLoading(true)
+      await signOut({ callbackUrl: '/'})
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false)
+    }
+  }
 
   return (
     <Menu as={"div"} className="relative inline-block text-left">
@@ -42,34 +56,35 @@ export default function MenuDropDown() {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-0 mt-2 w-64 border border-white/10 rounded-md bg-black/15 focus:outline-none">
+        <Menu.Items className="absolute right-0 mt-2 w-64 divide-y divide-gray-100 border border-white/10 rounded-md bg-black/15 focus:outline-none">
           <div className="px-1 py-1 flex flex-col gap-1">
-            
+
             {/* display the menu options */}
-            
+
             {menuOptions.map((item) => (
               <Menu.Item key={item.id}>
                 {({ active }) => (
-                  <div className={`${active && 'bg-white/10'
-                } ${menuItemClass}`}>
-                    <item.component className='fill-white h-5 w-5'/>
-                    <Link
-                      href={item.href}
-                    >
-                      {item.name}
-                    </Link>
-                  </div>
+                  <Link
+                    href={item.href}
+                    onClick={handleSingOut}
+                    className={`${active && 'bg-white/10'
+                      } ${menuItemClass}`}
+                  >
+                    <item.component className='fill-white h-5 w-5' />
+                    {item.name}
+                  </Link>
                 )}
               </Menu.Item>
             ))}
             <Menu.Item>
               {({ active }) => (
-                <div className={`${active && 'bg-white/10'
-              } ${menuItemClass}`}>
-                  <LogoutSvg className='fill-white h-5 w-5'/>
-                  <button
-                    onClick={() => signOut()}>Sign out</button>
-                </div>
+                <Button
+                  onClick={handleSingOut}
+                  className={`${active && 'bg-white/10'
+                    } ${menuItemClass}`}>
+                  <LogoutSvg className='fill-white h-5 w-5' />
+                  Sign out
+                </Button>
               )}
             </Menu.Item>
           </div>
