@@ -66,7 +66,6 @@ export default function MenuDropDown() {
                 {({ active }) => (
                   <Link
                     href={item.href}
-                    onClick={handleSingOut}
                     className={`${active && 'bg-white/10'
                       } ${menuItemClass}`}
                   >

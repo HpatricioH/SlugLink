@@ -28,16 +28,14 @@ export default function Auth({ user }: UserProps) {
     }
   }
 
-  console.log(loading);
-
   if (loading && user === undefined) {
     return <Spinner />;
   }
 
-  if (user) {
+  if (user !== undefined) {
     return (
       <p>
-        <span>{user.name}</span>
+        <span>{user?.name}</span>
       </p>
     );
   }
