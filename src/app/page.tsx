@@ -4,6 +4,7 @@ import Link from "next/link";
 import { CreatePost } from "~/app/_components/create-post";
 import { getServerAuthSession } from "~/server/auth";
 import { api } from "~/trpc/server";
+import Feature from "./_components/Features/Features";
 
 //TODO 1: Delete this type when changing all the code. 
 type PostType = {
@@ -18,17 +19,20 @@ export default async function Home() {
   const session = await getServerAuthSession();
 
   return (
-    <main className="flex calcHeight flex-col items-center pt-20 pb-20 transition-all duration-100 bg-dark-midnight text-white ">
-      <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
+    <main className="flex calcHeight flex-col items-center pt-18 pb-20 transition-all duration-100 bg-dark-midnight text-white ">
+      <div className="container flex flex-col items-center justify-center gap-5 px-4 py-16 ">
         <h1 className="text-5xl font-bold tracking-tight sm:text-[5rem]">
-          Slug<span className="text-[hsl(280,100%,70%)]">Link</span>
+          Slug<span className="text-dark-violet">Link</span>
         </h1>
         <div className="flex flex-col items-center gap-2">
-          <p className="text-2xl text-white">
-            {hello ? hello.greeting : "Loading tRPC query..."}
+          <p className="text-2xl text-white/50">
+            {/* {hello ? hello.greeting : "Loading tRPC query..."} */}
+            URL Shortener, QR Codes – Build, edit and manage your links.
           </p>
         </div>
-        <CrudShowcase />
+        {/* card */}
+        <Feature />
+        {/* <CrudShowcase /> */}
       </div>
     </main>
   );
@@ -41,7 +45,7 @@ async function CrudShowcase() {
   const latestPost: PostType = await api.post.getLatest.query() as PostType; // Explicitly type latestPost as PostType
 
   return (
-    <div className="w-full max-w-xs">
+    <div className="w-full max-w-xs mt-5">
       {latestPost ? (
         <p className="truncate">Your most recent post: {latestPost.name}</p>
       ) : (
