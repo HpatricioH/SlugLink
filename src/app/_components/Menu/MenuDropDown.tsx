@@ -7,6 +7,7 @@ import HamburgerSvg from "~/utils/HamburgerSvg";
 import AddSvg from '~/utils/AddSvg';
 import LogoutSvg from '~/utils/LogoutSvg';
 import LinkSvg from '~/utils/LinkSvg';
+import QrSvg from '~/utils/QrSvg';
 import Link from 'next/link';
 import Button from '~/utils/Button';
 import { useLoadingSession } from '~/store/loadingSession';
@@ -17,6 +18,12 @@ const menuOptions = [
     name: 'Create new link',
     href: '/create',
     component: AddSvg
+  },
+  {
+    id: 'qrcode',
+    name: 'Create new QR Code',
+    href: '/qrcode',
+    component: QrSvg
   },
   {
     id: 'dashboard',
