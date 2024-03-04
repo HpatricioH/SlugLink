@@ -5,3 +5,20 @@
 .calcHeight {
   height: calc(100vh - 71px);
 }
+
+.glow {
+  animation: move 10s linear infinite;
+  offset-path: rect(0% auto 100% auto);
+  background: radial-gradient(#fff, #f1f5f9, transparent);
+}
+
+@keyframes move {
+  0% {
+    offset-distance: 0%;
+  }
+
+  100% {
+    offset-distance: 100%;
+  }
+}
+
