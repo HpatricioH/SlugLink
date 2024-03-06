@@ -3,12 +3,13 @@ import Image from "next/image";
 import Link from "next/link";
 import Auth from "../Auth/Auth";
 import MenuDropDown from "../Menu/MenuDropDown";
+import { Suspense } from "react";
 
 export default async function Header() {
   const session = await getServerAuthSession();
 
   return (
-    <header className="bg-dark-midnight text-white sticky top-0 z-40 w-full py-4 duration-300">
+    <header className="bg-dark-midnight text-white sticky top-0 w-full py-4 duration-300">
       <div className="flex container pl-4 pr-4 items-center justify-between mx-auto">
         <Link href='/'>
           <Image
@@ -19,7 +20,9 @@ export default async function Header() {
           />
         </Link>
         <div className="flex gap-2 items-center">
-          <Auth user={session?.user}/>
+          <Suspense fallback={<div>...loading</div>}>
+            <Auth user={session?.user} session={session}/>
+          </Suspense>
           {session && <MenuDropDown />}
         </div>
       </div>

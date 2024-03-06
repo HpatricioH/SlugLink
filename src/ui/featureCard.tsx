@@ -13,7 +13,7 @@ interface FeatureCardProps {
 
 export default function FeatureCard({title, description, icon, href, type, arrayFeatures}: FeatureCardProps) {
   return (
-    <div className='flex flex-col gap-6 w-72 border border-white/10 rounded-md p-[0.85rem] lg:w-80 bg-dark-midnight z-50'>
+    <div className='flex flex-col gap-6 w-72 border border-white/10 rounded-md p-[0.85rem] lg:w-80 bg-dark-midnight shadow-lg shadow-dark-violet/50'>
       <div className="flex gap-3 items-center">
         {icon}
         <h3 className="font-extrabold text-xl tracking-wide">{title}</h3>
