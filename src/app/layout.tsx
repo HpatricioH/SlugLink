@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 
 import { TRPCReactProvider } from "~/trpc/react";
 import Header from "./_components/Header/Header";
+import Footer from "./_components/Footer/Footer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -27,6 +28,7 @@ export default function RootLayout({
         <TRPCReactProvider>
           <Header />
             <div className="min-h-auto">{children}</div>
+          <Footer />
         </TRPCReactProvider>
       </body>
     </html>
