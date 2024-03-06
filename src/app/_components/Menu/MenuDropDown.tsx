@@ -63,7 +63,7 @@ export default function MenuDropDown() {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-0 mt-2 w-64 divide-y divide-gray-100 border border-white/10 rounded-md bg-black/15 focus:outline-none">
+        <Menu.Items className="absolute right-0 mt-2 w-64 divide-y divide-gray-100 border border-white/10 rounded-md bg-dark-midnight focus:outline-none z-50">
           <div className="px-1 py-1 flex flex-col gap-1">
 
             {/* display the menu options */}
