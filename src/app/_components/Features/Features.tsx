@@ -32,11 +32,19 @@ const cardContent = [
 ]
 
 // TODO: if not logged in, show a modal to sign in into the app. 
-export default function Feature () {
+export default function Feature() {
   return (
     <section className="grid gap-6 mt-8 grid-cols-1 sm:grid-cols-2 z-3">
       {cardContent.map((card, i) => {
-        return <FeatureCard key={i} title={card.title} description={card.description} icon={card.icon} href={card.href} type={card.type} arrayFeatures={card.arrayFeatures}/>
+        return <FeatureCard
+          key={i}
+          title={card.title}
+          description={card.description}
+          icon={card.icon}
+          href={card.href}
+          type={card.type}
+          arrayFeatures={card.arrayFeatures}
+        />
       })}
     </section>
   )

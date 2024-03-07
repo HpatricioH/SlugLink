@@ -26,7 +26,7 @@ export default async function Home() {
             Slug<span className="text-dark-violet">Link</span>
           </h1>
           <div className="flex flex-col items-center gap-2">
-            <p className="text-2xl text-white/50">
+            <p className="text-2xl text-white/50 text-center text-wrap">
               {/* {hello ? hello.greeting : "Loading tRPC query..."} */}
               URL Shortener, QR Codes – Build, edit and manage your links.
             </p>
@@ -43,7 +43,7 @@ async function CrudShowcase() {
   const session = await getServerAuthSession();
   if (!session?.user) return null;
 
-  const latestPost: PostType = await api.post.getLatest.query() as PostType; // Explicitly type latestPost as PostType
+  const latestPost: PostType = await api.post.getLatest.query() as PostType; 
 
   return (
     <div className="w-full max-w-xs mt-5">
