@@ -31,6 +31,14 @@ export const linksRouter = createTRPCRouter({
           createdBy: { connect: {id: ctx.session.user.id }}
         }
       })
-    })
+    }),
 
+  // Get Links 
+  getLinks: protectedProcedure.query(({ ctx }) => {
+    return ctx.db.link.findMany({
+      where: {
+        createdBy: { id: ctx.session.user.id }
+      }
+    })
+  })
 })

@@ -5,6 +5,7 @@ interface ButtonProps {
   className?: string
   onClick?: () => void
   type?: 'submit' | 'button' | 'reset'
+  disabled?: boolean
 }
 
 export default function Button ({ children, className, ...props }: ButtonProps) {

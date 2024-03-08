@@ -1,11 +1,14 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getServerAuthSession } from "~/server/auth";
+import { api } from "~/trpc/server";
 import NoneSvg from "~/utils/NoneSvg";
 
 export default async function Page() {
   const session = await getServerAuthSession();
   const inputClass = "rounded-2xl bg-white/10 w-full mt-1 block px-3 py-2  border border-white/10 text-sm shadow-sm placeholder-white/50 focus:outline-none focus:ring-1 focus:ring-white/10 disabled:shadow-none"
+
+   const getLinks = await api.link.getLinks.query();
 
   if (!session) {
     redirect('/')
@@ -37,6 +40,9 @@ export default async function Page() {
             >
               + Create a QR Code
           </Link>
+          {getLinks?.map((link) => (
+          <p key={link.id}>{link.description}</p>
+          ))}
         </div>
       </div>
     </section>
