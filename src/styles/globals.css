@@ -12,6 +12,16 @@
   background: radial-gradient(#fff, #f1f5f9, transparent);
 }
 
+.linkCard {
+  display: grid;
+  grid-template-columns: 
+    repeat(
+      auto-fit,
+      minmax(300px, 1fr)
+    );
+  gap: 30px;
+}
+
 @keyframes move {
   0% {
     offset-distance: 0%;

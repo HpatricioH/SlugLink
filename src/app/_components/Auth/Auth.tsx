@@ -10,10 +10,11 @@ interface UserProps {
   user: {
     name?: string | null;
   } | null | undefined;
+  session?: unknown;
 }
 
 
-export default function Auth({ user }: UserProps) {
+export default function Auth({ user, session }: UserProps) {
   const { loading, setLoading } = useLoadingSession();
 
   const handleSignIn = async () => {
