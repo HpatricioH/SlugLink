@@ -6,6 +6,10 @@
   height: calc(100vh - 71px);
 }
 
+.calcHeight2 {
+  height: calc(100vh - 520px);
+}
+
 .glow {
   animation: move 10s linear infinite;
   offset-path: rect(0% auto 100% auto);

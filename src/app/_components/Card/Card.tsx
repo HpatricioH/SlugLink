@@ -1,3 +1,7 @@
+import CopySvg from "~/utils/CopySvg";
+import DeleteSvg from "~/utils/DeleteSvg";
+import EditSvg from "~/utils/EditSvg";
+
 const cardsExamples = [
   {
     id: 1,
@@ -115,20 +119,18 @@ interface CardProps {
 }
 
 export default function Card({ getLinks }: CardProps) {
-  console.log(getLinks)
-
   return (
     <>
-      {cardsExamples?.map((link) => (
+      {getLinks?.map((link) => (
         <section key={link.id} className="inline-block space-y-2 border border-white/10 bg-dark-midnight rounded-md z-10 relative px-4 py-2 w-full">
           <p>{`https://sluglink.com/${link.slug}`}</p>
           <div className="flex justify-between">
             <p className="text-sm font-thin">{link.description}</p>
-            <div className="flex gap-2">
-              <p>copy</p>
-              <p>edit</p>
-              <p>delete</p>
-            </div>
+          </div>
+          <div className="flex gap-3 items-end justify-end *:fill-white *:w-5 *:h-5 *:cursor-pointer">
+            <CopySvg className="hover:fill-dark-violet"/>
+            <EditSvg className="hover:fill-dark-violet"/>
+            <DeleteSvg className="hover:fill-dark-violet"/>
           </div>
         </section>
       ))}

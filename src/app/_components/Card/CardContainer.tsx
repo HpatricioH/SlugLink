@@ -7,9 +7,13 @@ export default async function CardContainer() {
 
   return (
     <>
-      {getLinks ? <div className="linkCard mt-4">
-        <Card getLinks={getLinks}/>
-      </div> : <NoLinks />}
+      {
+        getLinks.length > 0
+          ? <div className="linkCard mt-4">
+            <Card getLinks={getLinks} />
+          </div>
+          : <NoLinks />
+      }
     </>
   )
 }
