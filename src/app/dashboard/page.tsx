@@ -12,7 +12,7 @@ export default async function Page() {
   }
 
   return (
-    <section className="flex flex-col items-center pb-[7.60rem] lg:pb-[13.20rem] transition-all duration-100 bg-dark-midnight text-white">
+    <section className="pb-[22.60rem] lg:pb-[22.20rem] transition-all duration-100 bg-dark-midnight text-white">
       <div className="flex flex-col gap-5 container m-auto px-4 py-10">
         <h1 className="text-2xl font-bold tracking-wide">Dashboard Page</h1>
         <form action="">

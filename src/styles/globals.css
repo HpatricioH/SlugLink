@@ -7,7 +7,7 @@
 }
 
 .calcHeight2 {
-  height: calc(100vh - 520px);
+  height: calc(100vh - 71px - 55px);
 }
 
 .glow {
@@ -20,7 +20,7 @@
   display: grid;
   grid-template-columns: 
     repeat(
-      auto-fit,
+      auto-fill,
       minmax(300px, 1fr)
     );
   gap: 30px;
