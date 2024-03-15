@@ -12,8 +12,8 @@ export default async function Page() {
   }
 
   return (
-    <section className="pb-[22.60rem] lg:pb-[22.20rem] transition-all duration-100 bg-dark-midnight text-white">
-      <div className="flex flex-col gap-5 container m-auto px-4 py-10">
+    <section className="h-fit lg:calcHeight2 lg:pb-[6.9rem] transition-all duration-100 bg-dark-midnight text-white">
+      <div className="flex flex-col gap-5 container m-auto px-4 pb-16 pt-4 ">
         <h1 className="text-2xl font-bold tracking-wide">Dashboard Page</h1>
         <form action="">
           <input
