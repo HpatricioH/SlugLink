@@ -19,11 +19,8 @@ const UpdateLinkSchema = z.object({
   description: z.string()
 })
 
-const SingleLinkSchema = z.object({
+const DeleteLinkSchema = z.object({
   id: z.number(),
-  url: z.string(),
-  slug: z.string(),
-  description: z.string()
 })
 
 export const linksRouter = createTRPCRouter({
@@ -71,7 +68,7 @@ export const linksRouter = createTRPCRouter({
 
   // Delete Links
   deleteLink: protectedProcedure
-    .input(SingleLinkSchema)
+    .input(DeleteLinkSchema)
     .mutation(async ({ ctx, input }) => {
       return ctx.db.link.delete({
         where: { id: input.id }
