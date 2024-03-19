@@ -3,16 +3,16 @@ import { Dialog, Transition } from '@headlessui/react'
 
 interface ModalProps {
   title: string;
-  copyTooltip: boolean;
+  state: boolean;
   children?: ReactNode;
-  setCopyTooltip: (value: boolean) => void;
+  setState: (value: boolean) => void;
 }
 
 export default function Modal(props: ModalProps) {
 
   return (
-    <Transition appear show={props.copyTooltip} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={props.setCopyTooltip}>
+    <Transition appear show={props.state} as={Fragment}>
+      <Dialog as="div" className="relative z-10" onClose={props.setState}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"

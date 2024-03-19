@@ -8,14 +8,14 @@ export default function NoLinks() {
       <p className="mb-6 tracking-wide font-bold">No Links or QR codes created</p>
       <Link
         href={'/create'}
-        className="border border-white rounded-3xl p-3 hover:border-white/50 hover:text-white/50"
+        className="border border-white rounded-3xl p-3 hover:border-white/80 hover:text-white/50"
       >
         + Create a Link
       </Link>
       <span >or</span>
       <Link
         href={'/qrcode'}
-        className="border border-white rounded-3xl p-3 hover:border-white/50 hover:text-white/50"
+        className="border border-white rounded-3xl p-3 hover:border-white/80 hover:text-white/50"
       >
         + Create a QR Code
       </Link>

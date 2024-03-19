@@ -9,7 +9,11 @@ export default function CreateLink() {
   const router = useRouter()
   const inputClass = "rounded-2xl bg-white/10 w-full mt-1 block px-3 py-2  border border-white/10 text-sm shadow-sm placeholder-white/50 focus:outline-none focus:ring-1 focus:ring-white/10 disabled:shadow-none"
   
-  const createLink = api.link.create.useMutation()
+  const createLink = api.link.create.useMutation({
+    onSuccess: () => {
+      router.refresh()
+    }
+  })
   
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -21,8 +25,6 @@ export default function CreateLink() {
       slug,
       description
     })
-
-    router.refresh()
   }
 
   return (
