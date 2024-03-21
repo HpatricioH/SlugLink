@@ -12,7 +12,7 @@ export default async function Page() {
   }
 
   return (
-    <section className="min-h-screen h-fit transition-all duration-100 bg-dark-midnight text-white">
+    <section className="min-h-screen h-fit transition-all duration-100 bg-dark-midnight text-white z-10">
       <div className="flex flex-col gap-5 container m-auto px-4 pt-4 ">
         <h1 className="text-2xl font-bold tracking-wide">Dashboard Page</h1>
         <form action="">
