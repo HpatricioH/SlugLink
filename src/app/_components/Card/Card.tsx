@@ -18,8 +18,6 @@ export default function Card({ slug, description, id }: LinkProps) {
   const [copyTooltip, setCopyTooltip] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
 
-
-
   const handleDeleteModal = () => {
     setDeleteModal(true);
   }

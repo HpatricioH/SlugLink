@@ -1,3 +1,6 @@
+'use client'
+
+import { useRouter } from 'next/navigation';
 import { trpc } from "~/utils/trpc";
 import Button from "~/utils/Button";
 
@@ -7,16 +10,18 @@ interface DeleteProps {
 }
 
 export default function Delete (props:DeleteProps) {
+  const router = useRouter()
   const buttonClass = "border border-white rounded-3xl p-2 hover:border-white/80 hover:text-white/50";
 
-  const deleteLinkMutation = trpc.link.deleteLink.useMutation({
-    onSuccess: () => {
-      props.setDeleteModal(false)
-    }
-  });
+  const deleteLinkMutation = trpc.link.deleteLink.useMutation();
 
   const handleDeleteLink = () => {
-    deleteLinkMutation.mutate({id: props.id});
+    deleteLinkMutation.mutate({id: props.id}, {
+      onSuccess: () => {
+        props.setDeleteModal(false);
+        router.refresh()
+      }
+    });
   }
 
   const handleCloseModal = () => {
