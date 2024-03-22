@@ -6,6 +6,7 @@ import DeleteSvg from "~/utils/DeleteSvg";
 import EditSvg from "~/utils/EditSvg";
 import Modal from "~/ui/Modal";
 import Delete from "../Delete/Delete";
+import { errorToastHandler, successToastHandler } from "~/utils/toastHandler";
 
 interface LinkProps {
   slug: string;
@@ -15,7 +16,6 @@ interface LinkProps {
 
 
 export default function Card({ slug, description, id }: LinkProps) {
-  const [copyTooltip, setCopyTooltip] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
 
   const handleDeleteModal = () => {
@@ -29,17 +29,14 @@ export default function Card({ slug, description, id }: LinkProps) {
 
   const copyToClipboard = async () => {
     try {
-      setCopyTooltip(true);
       const copyLinkElement = document.getElementById(`copyLink${id}`);
       const textToCopy = copyLinkElement?.textContent ?? '';
 
       await navigator.clipboard.writeText(textToCopy);
     } catch (err) {
-      console.error('Failed to copy to clipboard:', err);
+      errorToastHandler({ message: 'Failed to copy link to clipboard!' });
     } finally {
-      setTimeout(() => {
-        setCopyTooltip(false);
-      }, 1200);
+      successToastHandler({ message: 'Link copied to clipboard!' });
     }
   };
 
@@ -54,11 +51,6 @@ export default function Card({ slug, description, id }: LinkProps) {
         <EditSvg className="hover:fill-dark-violet" />
         <DeleteSvg className="hover:fill-dark-violet" onClick={handleDeleteModal} />
       </div>
-      <Modal
-        title="Link Copied!"
-        state={copyTooltip}
-        setState={setCopyTooltip}
-      />
       <Modal
         title="Are you sure you want to delete this link?"
         setState={setDeleteModal}

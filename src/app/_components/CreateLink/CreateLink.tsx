@@ -5,21 +5,22 @@ import { useRouter } from "next/navigation";
 import { type FormEvent } from 'react'
 import { api } from '~/trpc/react'
 import Button from '~/utils/Button'
+import { successToastHandler, errorToastHandler } from "~/utils/toastHandler";
 
 export default function CreateLink() {
   const ref = useRef<HTMLFormElement>(null)
   const router = useRouter()
-  const inputClass = "rounded-2xl bg-white/10 w-full mt-1 block px-3 py-2  border border-white/10 text-sm shadow-sm placeholder-white/50 focus:outline-none focus:ring-1 focus:ring-white/10 disabled:shadow-none"
+  const inputClass = "rounded-2xl bg-white/10 w-full mt-1 block px-3 py-2 border border-white/10 text-sm shadow-sm placeholder-white/50 focus:outline-none focus:ring-1 focus:ring-white/10 disabled:shadow-none"
 
   const createLink = api.link.create.useMutation()
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     const formData = new FormData(event.currentTarget)
-    const { 
-      url = '', 
-      slug = '', 
-      description = '' 
+    const {
+      url = '',
+      slug = '',
+      description = ''
     } = Object.fromEntries(formData) as Record<string, string>
 
     createLink.mutate({
@@ -28,12 +29,12 @@ export default function CreateLink() {
       description
     }, {
       onSuccess: () => {
+        successToastHandler({ message: 'Link created successfully!'})
         router.push('/dashboard')
         router.refresh()
       },
       onError: (error) => {
-        // TODO: change this to a modal or toast notification
-        alert(error)
+        errorToastHandler({ message: 'Slug already exists! Try another customize link.' })
       }
     })
   }

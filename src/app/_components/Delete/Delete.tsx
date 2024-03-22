@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { trpc } from "~/utils/trpc";
 import Button from "~/utils/Button";
+import { successToastHandler } from '~/utils/toastHandler';
 
 interface DeleteProps {
   setDeleteModal: (value: boolean) => void;
@@ -18,6 +19,7 @@ export default function Delete (props:DeleteProps) {
   const handleDeleteLink = () => {
     deleteLinkMutation.mutate({id: props.id}, {
       onSuccess: () => {
+        successToastHandler({ message: 'Link deleted successfully!'})
         props.setDeleteModal(false);
         router.refresh()
       }
