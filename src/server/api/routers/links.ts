@@ -7,14 +7,14 @@ import {
 } from "~/server/api/trpc";
 
 const CreateLinksSchema = z.object({
-  url: z.string(),
+  url: z.string().url(),
   slug: z.string(),
   description: z.string(),
 })
 
 const UpdateLinkSchema = z.object({
   id: z.number(),
-  url: z.string(),
+  url: z.string().url(),
   slug: z.string(),
   description: z.string()
 })
