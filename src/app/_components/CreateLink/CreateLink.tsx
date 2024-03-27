@@ -8,16 +8,15 @@ import Button from '~/utils/Button'
 import { successToastHandler, errorToastHandler } from "~/utils/toastHandler";
 
 export default function CreateLink() {
-  const [formError, setFormError] = useState(false)
+  const [UrlError, setUrlError] = useState(false)
   const [slugError, setSlugError] = useState(false)
   const ref = useRef<HTMLFormElement>(null)
   const router = useRouter()
   const inputClass = 'rounded-2xl bg-white/10 w-full mt-1 block px-3 py-2 border border-white/10 text-sm shadow-sm placeholder-white/50 focus:outline-none focus:ring-1 focus:ring-white/10 disabled:shadow-none'
 
   const createLink = api.link.create.useMutation()
-  const errorUrl = createLink.error?.data?.zodError?.fieldErrors?.url?.[0]
 
-  async function onSubmit(event: FormEvent<HTMLFormElement>) {
+  async function onSubmit(event: FormEvent<HTMLFormElement>, ref: React.RefObject<HTMLFormElement>) {
     event.preventDefault()
     const formData = new FormData(event.currentTarget)
     const {
@@ -26,8 +25,8 @@ export default function CreateLink() {
       description = ''
     } = Object.fromEntries(formData) as Record<string, string>
 
-    if (!url) return setFormError(true)
-    if (!slug) return setSlugError(true)
+    if (slug === '') { setSlugError(true) }
+    if (!url || url.trim() === '') { setUrlError(true) }
 
     if (url && slug) {
       createLink.mutate({
@@ -39,18 +38,20 @@ export default function CreateLink() {
           successToastHandler({ message: 'Link created successfully!' })
           router.push('/dashboard')
           router.refresh()
+          ref.current?.reset()
         },
-        onError: () => {
-          if (errorUrl) {
-            setFormError(true)
-            errorToastHandler({ message: errorUrl })
+        onError: (opts) => {
+          const errorMessage = opts.message.toString();
+
+          if (errorMessage.includes('Invalid url')) {
+            setUrlError(true)
+            errorToastHandler({ message: 'Invalid URL' })
           } else {
             errorToastHandler({ message: 'Slug already exists! Try another customize link.' })
           }
         }
       })
     }
-
   }
 
   return (
@@ -58,16 +59,15 @@ export default function CreateLink() {
       ref={ref}
       className="flex flex-col gap-3"
       onSubmit={async (event) => {
-        await onSubmit(event)
-        ref.current?.reset()
+        await onSubmit(event, ref)
       }}>
       <label htmlFor="">Paste a long URL:</label>
       <input
         type="text"
         name='url'
         placeholder="https://example.com"
-        className={`${inputClass} ${formError ? 'border border-red-700' : ''}`}
-        onFocus={() => setFormError(false)} />
+        className={`${inputClass} ${UrlError ? 'border border-red-700' : ''}`}
+        onFocus={() => setUrlError(false)} />
       <label htmlFor="">Customize your link:</label>
       <input
         type="text"
