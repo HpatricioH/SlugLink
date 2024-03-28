@@ -19,6 +19,10 @@ const UpdateLinkSchema = z.object({
   description: z.string()
 })
 
+const GetLinkSchema = z.object({
+  id: z.number(),
+})
+
 const DeleteLinkSchema = z.object({
   id: z.number(),
 })
@@ -52,6 +56,15 @@ export const linksRouter = createTRPCRouter({
       }
     })
   }),
+
+  // Get one Link 
+  getLink: protectedProcedure
+    .input(GetLinkSchema)
+    .query(async ({ ctx, input }) => {
+      return ctx.db.link.findUnique({
+        where: { id: input.id }
+      })
+    }),
 
   // Edit Links 
   updateLink: protectedProcedure
