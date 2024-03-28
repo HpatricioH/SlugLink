@@ -7,6 +7,7 @@ import EditSvg from "~/utils/EditSvg";
 import Modal from "~/ui/Modal";
 import Delete from "../Delete/Delete";
 import { errorToastHandler, successToastHandler } from "~/utils/toastHandler";
+import Edit from "../Edit/Edit";
 
 interface LinkProps {
   slug: string;
@@ -17,15 +18,15 @@ interface LinkProps {
 
 export default function Card({ slug, description, id }: LinkProps) {
   const [deleteModal, setDeleteModal] = useState(false);
+  const [editModal, setEditModal] = useState(false);
 
   const handleDeleteModal = () => {
     setDeleteModal(true);
   }
 
-  // const query = trpc.link.getLinks.useQuery();
-
-  // console.log(query.data);
-
+  const handleEditModal = () => {
+    setEditModal(true);
+  }
 
   const copyToClipboard = async () => {
     try {
@@ -48,14 +49,19 @@ export default function Card({ slug, description, id }: LinkProps) {
       </div>
       <div className="relative flex gap-3 items-end justify-end *:fill-white *:w-5 *:h-5 *:cursor-pointer">
         <CopySvg className="hover:fill-dark-violet" onClick={copyToClipboard} />
-        <EditSvg className="hover:fill-dark-violet" />
+        <EditSvg className="hover:fill-dark-violet" onClick={handleEditModal} />
         <DeleteSvg className="hover:fill-dark-violet" onClick={handleDeleteModal} />
       </div>
       <Modal
+        title="Edit Link"
+        setState={setEditModal}
+        state={editModal}>
+        <Edit id={id} />
+      </Modal>
+      <Modal
         title="Are you sure you want to delete this link?"
         setState={setDeleteModal}
-        state={deleteModal}
-      >
+        state={deleteModal}>
         <Delete setDeleteModal={setDeleteModal} id={id} />
       </Modal>
     </section>

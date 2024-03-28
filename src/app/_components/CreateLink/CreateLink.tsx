@@ -8,11 +8,11 @@ import Button from '~/utils/Button'
 import { successToastHandler, errorToastHandler } from "~/utils/toastHandler";
 
 export default function CreateLink() {
-  const [UrlError, setUrlError] = useState(false)
+  const [urlError, setUrlError] = useState(false)
   const [slugError, setSlugError] = useState(false)
   const ref = useRef<HTMLFormElement>(null)
   const router = useRouter()
-  const inputClass = 'rounded-2xl bg-white/10 w-full mt-1 block px-3 py-2 border border-white/10 text-sm shadow-sm placeholder-white/50 focus:outline-none focus:ring-1 focus:ring-white/10 disabled:shadow-none'
+  const inputClass = 'rounded-2xl bg-white/10 w-full mt-1 block px-3 py-2 border text-sm shadow-sm placeholder-white/50 focus:outline-none focus:ring-1 focus:ring-white/10 disabled:shadow-none'
 
   const createLink = api.link.create.useMutation()
 
@@ -66,14 +66,14 @@ export default function CreateLink() {
         type="text"
         name='url'
         placeholder="https://example.com"
-        className={`${inputClass} ${UrlError ? 'border border-red-700' : ''}`}
+        className={`${inputClass} ${urlError ? 'border-red-500' : 'border-white/10'}`}
         onFocus={() => setUrlError(false)} />
       <label htmlFor="">Customize your link:</label>
       <input
         type="text"
         name='slug'
         placeholder="https://sluglink.com/your-link"
-        className={`${inputClass} ${slugError ? 'border border-red-700' : ''}`}
+        className={`${inputClass} ${slugError ? 'border-red-500' : 'border-white/10'}`}
         onFocus={() => setSlugError(false)} />
       <label htmlFor="">Description (Optional):</label>
       <textarea
@@ -81,7 +81,7 @@ export default function CreateLink() {
         rows={3}
         cols={50}
         placeholder="e.g. URL for my blog post"
-        className={`${inputClass} resize-none`} />
+        className={`${inputClass} resize-none border-white/10`} />
       <div>
         <Button
           type="submit"
