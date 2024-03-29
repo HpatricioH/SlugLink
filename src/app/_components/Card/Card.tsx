@@ -56,7 +56,7 @@ export default function Card({ slug, description, id }: LinkProps) {
         title="Edit Link"
         setState={setEditModal}
         state={editModal}>
-        <Edit id={id} />
+        <Edit id={id} setEditModal={setEditModal} />
       </Modal>
       <Modal
         title="Are you sure you want to delete this link?"
