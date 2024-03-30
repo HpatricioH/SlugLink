@@ -1,10 +1,10 @@
 'use client'
 
 import { useRouter } from "next/navigation";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { type FormEvent } from 'react'
 import Button from "~/utils/Button";
-import { successToastHandler } from "~/utils/toastHandler";
+import { errorToastHandler, successToastHandler } from "~/utils/toastHandler";
 import { trpc } from "~/utils/trpc";
 
 interface EditProps {
@@ -14,6 +14,7 @@ interface EditProps {
 
 export default function Edit(props: EditProps) {
   const ref = useRef<HTMLFormElement>(null)
+  const [urlError, setUrlError] = useState(false)
   const router = useRouter()
 
   const getLink = trpc.link.getLink.useQuery({ id: props.id });
@@ -49,6 +50,10 @@ export default function Edit(props: EditProps) {
       onSuccess: () => {
         successToastHandler({ message: 'Link updated successfully!' })
         props.setEditModal(false)
+      },
+      onError: () => {
+        setUrlError(true)
+        errorToastHandler({ message: 'Invalid URL!' })
       }
     })
   }
@@ -70,7 +75,7 @@ export default function Edit(props: EditProps) {
         type="text"
         name='url'
         placeholder="https://example.com"
-        className={`${inputClass} border-white/10`}
+        className={`${inputClass} ${urlError ? 'border-red-500' : 'border-white/10'}`}
         defaultValue={getLink.data?.url}
       />
       <label className="pt-3">Description (Optional):</label>
