@@ -33,54 +33,56 @@ export default function QRForm() {
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path></svg>
             </span>
             <div className="accordion-content">
-              <div className="min-h-0 [&>p]:my-2">
-                <p>Background color:</p>
-                <div className="flex gap-4">
+              <div className="min-h-0 [&>p]:my-2 ">
+                <div className="card-body">
+                  <p>Background color:</p>
+                  <div className="flex gap-4">
+                    <div>
+                      <input
+                        type="text"
+                        placeholder="#151f42"
+                        className={inputClass}
+                        value={bgColor}
+                        onChange={(e) => setBgColor(e.target.value)}
+                      />
+                    </div>
+                    <div className="self-center">
+                      <input
+                        type="color"
+                        className="w-[4.5rem] h-8 rounded-md"
+                        onChange={(e) => setBgColor(e.target.value)}
+                        value={bgColor}
+                      />
+                    </div>
+                  </div>
+                  <p>Foreground color:</p>
+                  <div className="flex gap-4">
+                    <div>
+                      <input
+                        type="text"
+                        placeholder="#151f42"
+                        className={inputClass}
+                        value={fgColor}
+                        onChange={(e) => setFgColor(e.target.value)}
+                      />
+                    </div>
+                    <div className="self-center">
+                      <input
+                        type="color"
+                        className="w-[4.5rem] h-8 rounded-md"
+                        onChange={(e) => setFgColor(e.target.value)}
+                        value={fgColor}
+                      />
+                    </div>
+                  </div>
+                  <p>Margin:</p>
                   <div>
                     <input
-                      type="text"
-                      placeholder="#151f42"
-                      className={inputClass}
-                      value={bgColor}
-                      onChange={(e) => setBgColor(e.target.value)}
+                      type="range"
+                      placeholder="3"
+                      className="range range-flat-secondary"
                     />
                   </div>
-                  <div className="self-center">
-                    <input
-                      type="color"
-                      className="w-[4.5rem] h-8 rounded-md"
-                      onChange={(e) => setBgColor(e.target.value)}
-                      value={bgColor}
-                    />
-                  </div>
-                </div>
-                <p>Foreground color:</p>
-                <div className="flex gap-4">
-                  <div>
-                    <input
-                      type="text"
-                      placeholder="#151f42"
-                      className={inputClass}
-                      value={fgColor}
-                      onChange={(e) => setFgColor(e.target.value)}
-                    />
-                  </div>
-                  <div className="self-center">
-                    <input
-                      type="color"
-                      className="w-[4.5rem] h-8 rounded-md"
-                      onChange={(e) => setFgColor(e.target.value)}
-                      value={fgColor}
-                    />
-                  </div>
-                </div>
-                <p>Margin:</p>
-                <div>
-                  <input
-                    type="number"
-                    placeholder="3"
-                    className={inputClass}
-                  />
                 </div>
               </div>
             </div>
@@ -93,12 +95,14 @@ export default function QRForm() {
             </span>
             <div className="accordion-content">
               <div className="min-h-0">
-                <div>
-                  <label>Include Log </label>
-                  <input type="checkbox" />
-                </div>
-                <div>
-                  <p>Logos:</p>
+                <div className="card-body">
+                  <div>
+                    <label>Include Log </label>
+                    <input type="checkbox" />
+                  </div>
+                  <div>
+                    <p>Logos:</p>
+                  </div>
                 </div>
               </div>
             </div>
