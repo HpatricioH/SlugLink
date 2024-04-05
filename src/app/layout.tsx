@@ -30,7 +30,7 @@ export default function RootLayout({
         <TRPCReactProvider>
           <ToastContainer />
           <Header />
-            <div className="min-h-auto">{children}</div>
+          <div>{children}</div>
           <Footer />
         </TRPCReactProvider>
       </body>

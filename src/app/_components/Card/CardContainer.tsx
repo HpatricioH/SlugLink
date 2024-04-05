@@ -115,7 +115,7 @@ export default async function CardContainer() {
   return (
     <div className='mt-5 linkCard'>
       {getLinks.map((link) => {
-        return <Card key={link.id} id={link.id} slug={link.slug} description={link.description} /> 
+        return <Card key={link.id} id={link.id} slug={link.slug} description={link.description} />
       })}
     </div>
   )
