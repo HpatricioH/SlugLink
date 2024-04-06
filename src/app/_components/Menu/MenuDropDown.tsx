@@ -4,26 +4,19 @@ import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { signOut } from "next-auth/react"
 import HamburgerSvg from "~/utils/HamburgerSvg";
-import AddSvg from '~/utils/AddSvg';
 import LogoutSvg from '~/utils/LogoutSvg';
 import LinkSvg from '~/utils/LinkSvg';
-import QrSvg from '~/utils/QrSvg';
 import Link from 'next/link';
 import Button from '~/utils/Button';
 import { useLoadingSession } from '~/store/loadingSession';
+import HomeSvg from '~/utils/HomeSvg';
 
 const menuOptions = [
   {
     id: 'create',
-    name: 'Create new link',
-    href: '/create',
-    component: AddSvg
-  },
-  {
-    id: 'qrcode',
-    name: 'Create new QR Code',
-    href: '/qrcode',
-    component: QrSvg
+    name: 'Home',
+    href: '/',
+    component: HomeSvg
   },
   {
     id: 'dashboard',
@@ -40,7 +33,7 @@ export default function MenuDropDown() {
   const handleSingOut = async () => {
     try {
       setLoading(true)
-      await signOut({ callbackUrl: '/'})
+      await signOut({ callbackUrl: '/' })
     } catch (error) {
       console.log(error);
     } finally {
