@@ -7,7 +7,7 @@ const cardContent = [
     title: "URL Shortener",
     description: "Manage your links with ease. SlugLink allows you to create, update, and delete links.",
     icon: <LinkSvg className="fill-amber-500 h-10 w-10" />,
-    href: "/create",
+    href: "/dashboard",
     type: "Link",
     arrayFeatures: [
       "URL shortening with ease",
@@ -20,7 +20,7 @@ const cardContent = [
     title: "QR Codes",
     description: "Create and manage QR codes. SlugLink allows you to create, update, and delete QR codes.",
     icon: <QrSvg className="fill-lime-400 h-10 w-10" />,
-    href: "/qrcode",
+    href: "/dashboard/qrCode",
     type: "QR Code",
     arrayFeatures: [
       "Create QR Codes with ease",
