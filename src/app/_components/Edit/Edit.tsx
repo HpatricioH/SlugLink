@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { type FormEvent } from 'react'
 import Button from "~/utils/Button";
+import ButtonError from "~/utils/ButtonError";
 import { errorToastHandler, successToastHandler } from "~/utils/toastHandler";
 import { trpc } from "~/utils/trpc";
 
@@ -19,9 +20,6 @@ export default function Edit(props: EditProps) {
 
   const getLink = trpc.link.getLink.useQuery({ id: props.id });
   const editLinkMutation = trpc.link.updateLink.useMutation();
-
-  const inputClass = 'rounded-2xl bg-white/10 w-full block px-3 py-2 border text-sm shadow-sm placeholder-white/50 focus:outline-none focus:ring-1 focus:ring-white/10 disabled:shadow-none'
-  const buttonClass = "border border-white rounded-3xl p-2 hover:border-white/80 hover:text-white/50";
 
   useEffect(() => {
     if (editLinkMutation.isSuccess) {
@@ -63,37 +61,45 @@ export default function Edit(props: EditProps) {
   }
 
   return (
-    <form
-      ref={ref}
-      className="flex flex-col gap-3 text-white"
-      onSubmit={async (e) => {
-        await onSubmit(e)
-      }}
-    >
-      <label className="pt-3">New long URL:</label>
-      <input
-        type="text"
-        name='url'
-        placeholder="https://example.com"
-        className={`${inputClass} ${urlError ? 'border-red-500' : 'border-white/10'}`}
-        defaultValue={getLink.data?.url}
-      />
-      <label className="pt-3">Description (Optional):</label>
-      <textarea
-        className={`${inputClass} resize-none border-white/10`}
-        name="description"
-        rows={3}
-        cols={50}
-        placeholder="e.g. URL for my blog post"
-        defaultValue={getLink.data?.description ?? ''}
-      />
-      <div className="flex justify-end gap-3 pt-4">
-        <Button className={buttonClass}
-          disabled={editLinkMutation.isLoading}
-        > Edit Link
-        </Button>
-        <Button type="button" className={buttonClass} onClick={handleCloseModal}>Cancel</Button>
-      </div>
-    </form>
+    <>
+      <div className="divider my-2"></div>
+      <form
+        ref={ref}
+        className="flex flex-col gap-3 text-white"
+        onSubmit={async (e) => {
+          await onSubmit(e)
+        }}
+      >
+        <div className="form-field mt-1">
+          <label className="pt-3 form-label">New long URL:</label>
+          <input
+            type="text"
+            name='url'
+            placeholder="https://example.com"
+            className={`input input-block ${urlError ? 'input-error' : ''}`}
+            defaultValue={getLink.data?.url}
+          />
+        </div>
+        <div className="form-field mt-1">
+          <label className="pt-3 form-label">Description (Optional):</label>
+          <textarea
+            className={`textarea textarea-block resize-none`}
+            name="description"
+            rows={3}
+            cols={50}
+            placeholder="e.g. URL for my blog post"
+            defaultValue={getLink.data?.description ?? ''}
+          />
+        </div>
+        <div className="flex justify-end gap-3 pt-4">
+          <Button
+            className={`${editLinkMutation.isLoading ? 'btn-loading' : ''}`}
+            disabled={editLinkMutation.isLoading}
+          > Edit Link
+          </Button>
+          <ButtonError type="button" onClick={handleCloseModal}>Cancel</ButtonError>
+        </div>
+      </form>
+    </>
   )
 }
