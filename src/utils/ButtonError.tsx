@@ -8,11 +8,11 @@ interface ButtonProps {
   disabled?: boolean
 }
 
-export default function Button({ children, className, ...props }: ButtonProps) {
+export default function ButtonError({ children, className, ...props }: ButtonProps) {
   return (
     <button
       {...props}
-      className={`${className} btn btn-outline`}
+      className={`${className} btn btn-error`}
     >
       {children}
     </button>
