@@ -7,12 +7,15 @@ import { api } from '~/trpc/react'
 import Button from '~/utils/Button'
 import { successToastHandler, errorToastHandler } from "~/utils/toastHandler";
 
-export default function CreateLink() {
+interface CreateLinkProps {
+  setCreateModal: (value: boolean) => void
+}
+
+export default function CreateLink(props: CreateLinkProps) {
   const [urlError, setUrlError] = useState(false)
   const [slugError, setSlugError] = useState(false)
   const ref = useRef<HTMLFormElement>(null)
   const router = useRouter()
-  const inputClass = 'rounded-2xl bg-white/10 w-full mt-1 block px-3 py-2 border text-sm shadow-sm placeholder-white/50 focus:outline-none focus:ring-1 focus:ring-white/10 disabled:shadow-none'
 
   const createLink = api.link.create.useMutation()
 
@@ -36,7 +39,7 @@ export default function CreateLink() {
       }, {
         onSuccess: () => {
           successToastHandler({ message: 'Link created successfully!' })
-          router.push('/dashboard')
+          props.setCreateModal(false)
           router.refresh()
           ref.current?.reset()
         },
@@ -55,42 +58,51 @@ export default function CreateLink() {
   }
 
   return (
-    <form
-      ref={ref}
-      className="flex flex-col gap-3"
-      onSubmit={async (event) => {
-        await onSubmit(event, ref)
-      }}>
-      <label htmlFor="">Paste a long URL:</label>
-      <input
-        type="text"
-        name='url'
-        placeholder="https://example.com"
-        className={`${inputClass} ${urlError ? 'border-red-500' : 'border-white/10'}`}
-        onFocus={() => setUrlError(false)} />
-      <label htmlFor="">Customize your link:</label>
-      <input
-        type="text"
-        name='slug'
-        placeholder="https://sluglink.com/your-link"
-        className={`${inputClass} ${slugError ? 'border-red-500' : 'border-white/10'}`}
-        onFocus={() => setSlugError(false)} />
-      <label htmlFor="">Description (Optional):</label>
-      <textarea
-        name="description"
-        rows={3}
-        cols={50}
-        placeholder="e.g. URL for my blog post"
-        className={`${inputClass} resize-none border-white/10`} />
-      <div>
-        <Button
-          type="submit"
-          className="border border-white rounded-3xl p-3 hover:border-white/50 hover:text-white/50 mt-5"
-          disabled={createLink.isLoading}
-        >
-          {createLink.isLoading ? "Submitting..." : "+ Create Link"}
-        </Button>
-      </div>
-    </form>
+    <>
+      <div className="divider my-2"></div>
+      <form
+        ref={ref}
+        className="flex flex-col gap-3"
+        onSubmit={async (event) => {
+          await onSubmit(event, ref)
+        }}>
+        <div className="form-field mt-1">
+          <label className="form-label">Paste a long URL:</label>
+          <input
+            type="text"
+            name='url'
+            placeholder="https://example.com"
+            className={`input input-block ${urlError ? 'input-error' : ''}`}
+            onFocus={() => setUrlError(false)} />
+        </div>
+        <div className="form-field mt-1">
+          <label className="form-label">Customize your link:</label>
+          <input
+            type="text"
+            name='slug'
+            placeholder="https://sluglink.com/your-link"
+            className={`input input-block ${slugError ? 'input-error' : ''}`}
+            onFocus={() => setSlugError(false)} />
+        </div>
+        <div className="form-field mt-1">
+          <label className="form-label">Description (Optional):</label>
+          <textarea
+            name="description"
+            rows={3}
+            cols={50}
+            placeholder="e.g. URL for my blog post"
+            className={`textarea textarea-block resize-none`} />
+          <div className="self-end mt-4">
+          </div>
+          <Button
+            type="submit"
+            className={`${createLink.isLoading ? 'btn-loading' : ''}`}
+            disabled={createLink.isLoading}>
+            Create Link
+          </Button>
+        </div>
+      </form >
+
+    </>
   )
 }
