@@ -109,7 +109,7 @@ export default async function CardContainer() {
   const getLinks = await api.link.getLinks.query();
 
   if (getLinks.length === 0) {
-    return <NoLinks />
+    return <NoLinks title="No links created!" />
   }
 
   return (
