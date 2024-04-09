@@ -36,7 +36,7 @@ export default function Modal(props: ModalProps) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="border border-white/10 max-w-md transform overflow-hidden rounded-2xl bg-dark-midnight p-6 text-left align-middle shadow-xl transition-all">
+              <Dialog.Panel className="border border-white/10  transform overflow-hidden rounded-2xl bg-dark-midnight p-6 text-left align-middle shadow-xl transition-all">
                 <Dialog.Title
                   as="h3"
                   className="text-lg font-medium leading-6 text-white text-center"
