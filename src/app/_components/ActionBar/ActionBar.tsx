@@ -6,9 +6,11 @@ import Modal from "~/ui/Modal";
 import AddSvg from "~/utils/AddSvg";
 import Button from "~/utils/Button";
 import CreateLink from "../CreateLink/CreateLink";
+import QRForm from "../QRForm/QRForm";
 
 export default function ActionBar() {
   const [createModal, setCreateModal] = useState(false)
+  const [qrModal, setQrModal] = useState(false)
   const pathname = usePathname()
 
   return (
@@ -28,7 +30,7 @@ export default function ActionBar() {
               <AddSvg className="fill-white h-4 self-center" /> Create new Link
             </div>
           </Button> :
-          <Button>
+          <Button onClick={() => setQrModal(true)}>
             <div className="flex gap-1">
               <AddSvg className="fill-white h-4 self-center" /> Create new QR Code
             </div>
@@ -40,6 +42,12 @@ export default function ActionBar() {
         setState={setCreateModal}
         state={createModal}>
         <CreateLink setCreateModal={setCreateModal} />
+      </Modal>
+      <Modal
+        title={"Create a New QR Code"}
+        setState={setQrModal}
+        state={qrModal}>
+        <QRForm />
       </Modal>
     </div>
   )
