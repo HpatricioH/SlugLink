@@ -11,7 +11,7 @@ interface FeatureCardProps {
   arrayFeatures: string[];
 }
 
-export default function FeatureCard({title, description, icon, href, type, arrayFeatures}: FeatureCardProps) {
+export default function FeatureCard({ title, description, icon, href, type, arrayFeatures }: FeatureCardProps) {
   return (
     <div className='flex flex-col gap-6 w-72 border border-white/10 rounded-md p-[0.85rem] lg:w-80 bg-dark-midnight shadow-lg shadow-dark-violet/50'>
       <div className="flex gap-3 items-center">
@@ -27,7 +27,7 @@ export default function FeatureCard({title, description, icon, href, type, array
         <ul className="flex flex-col gap-4">
           {arrayFeatures.map((feature, index) => (
             <li key={index} className="text-white/70 flex items-center">
-              <CheckSvg className="fill-white w-6 h-6 pt-1"/>
+              <CheckSvg className="fill-white w-6 h-6 pt-1" />
               {feature}
             </li>
           ))}
@@ -35,8 +35,8 @@ export default function FeatureCard({title, description, icon, href, type, array
       </div>
       <div className="m-auto mt-7 mb-2">
         <Link href={href}>
-          <div className="flex gap-2 items-center border rounded-2xl p-3 border-white hover:border-white/50 *:hover:fill-white/50 *:hover:text-white/50">
-            <GetStartedSvg className="fill-white h-5 w-5 "/>
+          <div className="btn btn-outline">
+            <GetStartedSvg className="fill-white h-5 w-5 mr-1" />
             <p>Get Started</p>
           </div>
         </Link>
