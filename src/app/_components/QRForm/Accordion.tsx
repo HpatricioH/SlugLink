@@ -13,7 +13,7 @@ export default function Accordion(props: AccordionProps) {
 
   return (
     <div className="accordion-group">
-      <div className="accordion" >
+      <div className="accordion accordion-open" >
         <input type="checkbox" id="accordion-1" className="accordion-toggle" />
         <label htmlFor="accordion-1" className="accordion-title text-base bg-dark-midnight">Options</label>
         <span className="accordion-icon">
@@ -40,7 +40,7 @@ export default function Accordion(props: AccordionProps) {
                     type="color"
                     className="w-[4.5rem] h-8 rounded-md"
                     onChange={(e) => props.setBgColor(e.target.value)}
-                    value={props.bgColor}
+                    value={props.bgColor || '#333333'}
                   />
                 </div>
               </div>
@@ -63,7 +63,7 @@ export default function Accordion(props: AccordionProps) {
                     type="color"
                     className="w-[4.5rem] h-8 rounded-md"
                     onChange={(e) => props.setFgColor(e.target.value)}
-                    value={props.fgColor}
+                    value={props.fgColor || '#333333'}
                   />
                 </div>
               </div>
