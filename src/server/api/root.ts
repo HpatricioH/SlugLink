@@ -5,7 +5,7 @@ import { qrcodeRouter } from "./routers/qrcode";
 
 export const appRouter = createTRPCRouter({
   link: linksRouter,
-  qrCode: qrcodeRouter
+  qrCode: qrcodeRouter, 
 });
 
 export type AppRouter = typeof appRouter;
