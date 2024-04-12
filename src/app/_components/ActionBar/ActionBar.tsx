@@ -47,7 +47,7 @@ export default function ActionBar() {
         title={"Create a New QR Code"}
         setState={setQrModal}
         state={qrModal}>
-        <QRForm />
+        <QRForm setQrModal={setQrModal} />
       </Modal>
     </div>
   )
