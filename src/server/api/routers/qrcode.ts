@@ -7,7 +7,7 @@ import {
 } from "~/server/api/trpc"
 
 const CreateQRCodeSchema = z.object({
-  url: z.string(),
+  url: z.string().url(),
   bgColor: z.string(),
   fgColor: z.string(),
   margin: z.number()

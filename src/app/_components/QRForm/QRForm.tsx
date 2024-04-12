@@ -1,33 +1,78 @@
 'use client'
 
-import { useQRCode } from "next-qrcode";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { type FormEvent } from 'react'
 import Button from "~/utils/Button";
 import Accordion from "./Accordion";
 import { api } from '~/trpc/react'
+import { errorToastHandler, successToastHandler } from "~/utils/toastHandler";
+import { useRouter } from "next/navigation";
 
+interface QRFormProps {
+  setQrModal: (value: boolean) => void
+}
 
-
-export default function QRForm() {
+export default function QRForm(props: QRFormProps) {
   const [bgColor, setBgColor] = useState('')
   const [fgColor, setFgColor] = useState('')
   const [inputMargin, setInputMargin] = useState('3')
-  const { Canvas } = useQRCode()
+  const [urlError, setUrlError] = useState(false)
+  const ref = useRef<HTMLFormElement>(null)
+  const router = useRouter()
   const inputClass = "input input-block"
 
-  // const qrCodeTest = api.qrCode.hello.useQuery({ text: 'Hello' })
+  const createQRCode = api.qrCode.create.useMutation()
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>, ref: React.RefObject<HTMLFormElement>) {
+    event.preventDefault()
+    const formData = new FormData(event.currentTarget)
+    const { url = '' } = Object.fromEntries(formData) as Record<string, string>
+    const margin = Number(inputMargin)
+
+    if (!url) { setUrlError(true) }
+
+    if (url) {
+      createQRCode.mutate({
+        url,
+        bgColor,
+        fgColor,
+        margin
+      }, {
+        onSuccess: () => {
+          successToastHandler({ message: 'QR Code created successfully!' })
+          props.setQrModal(false)
+          router.refresh()
+          ref.current?.reset()
+        },
+        onError: (opts) => {
+          if (opts.message) {
+            setUrlError(true)
+            errorToastHandler({ message: 'Invalid URL' })
+          }
+        }
+      })
+    }
+  }
 
   return (
     <section>
       <div className="divider my-2"></div>
-      <form className="form-group">
+      <form
+        className="form-group"
+        ref={ref}
+        onSubmit={async (event) => {
+          await handleSubmit(event, ref)
+        }}
+      >
 
         <div className="form-field">
           <label className="form-label">Paste URL:</label>
           <input
             type="text"
+            name="url"
             placeholder="https://example.com"
-            className={inputClass} />
+            className={`${inputClass} ${urlError ? 'input-error' : ''}`}
+            onFocus={() => setUrlError(false)} />
         </div>
 
         <Accordion
@@ -39,28 +84,13 @@ export default function QRForm() {
           inputMargin={inputMargin}
         />
 
-        <Button className="mt-3">
+        <Button
+          type="submit"
+          className={`mt-3 ${createQRCode.isLoading ? 'btn-loading' : ''}`}
+          disabled={createQRCode.isLoading}>
           Create QR Code
         </Button>
-
       </form>
-      {/* <div id="qrCanvas" className="self-center">
-        <Canvas
-          text="https://example.com"
-          options={{
-            type: 'image/jpeg',
-            quality: 0.3,
-            errorCorrectionLevel: 'M',
-            margin: 2,
-            scale: 4,
-            width: 150,
-            color: {
-              dark: '#000000',
-              light: '#ffffff'
-            }
-          }}
-        />
-      </div> */}
     </section>
   )
 }
