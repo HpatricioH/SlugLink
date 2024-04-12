@@ -21,7 +21,7 @@ export default async function Header() {
         </Link>
         <div className="flex gap-2 items-center">
           <Suspense fallback={<div>...loading</div>}>
-            <Auth user={session?.user} session={session}/>
+            <Auth user={session?.user} session={session} />
           </Suspense>
           {session && <MenuDropDown />}
         </div>
