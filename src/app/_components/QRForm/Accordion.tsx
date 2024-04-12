@@ -40,7 +40,7 @@ export default function Accordion(props: AccordionProps) {
                     type="color"
                     className="w-[4.5rem] h-8 rounded-md"
                     onChange={(e) => props.setBgColor(e.target.value)}
-                    value={props.bgColor || '#333333'}
+                    value={props.bgColor || '#ffffff'}
                   />
                 </div>
               </div>
@@ -63,7 +63,7 @@ export default function Accordion(props: AccordionProps) {
                     type="color"
                     className="w-[4.5rem] h-8 rounded-md"
                     onChange={(e) => props.setFgColor(e.target.value)}
-                    value={props.fgColor || '#333333'}
+                    value={props.fgColor || '#000000'}
                   />
                 </div>
               </div>
