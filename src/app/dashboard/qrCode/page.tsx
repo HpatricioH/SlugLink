@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
-import NoLinks from "~/app/_components/NoLinks/NoLinks";
+import QRCardContainer from "~/app/_components/QRCard/QRCardContainer";
 import { getServerAuthSession } from "~/server/auth";
+
 
 
 
@@ -12,6 +13,8 @@ export default async function Page() {
   }
 
   return (
-    <NoLinks title="No QR Codes created!" />
+    <div>
+      <QRCardContainer />
+    </div>
   )
 }
