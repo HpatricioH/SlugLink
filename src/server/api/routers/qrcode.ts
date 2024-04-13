@@ -10,7 +10,8 @@ const CreateQRCodeSchema = z.object({
   url: z.string().url(),
   bgColor: z.string(),
   fgColor: z.string(),
-  margin: z.number()
+  margin: z.number(),
+  name: z.string()
 })
 
 const GetQRCodeSchema = z.object({
@@ -22,7 +23,8 @@ const UpdateQRCodeSchema = z.object({
   url: z.string().url(),
   bgColor: z.string(),
   fgColor: z.string(),
-  margin: z.number()
+  margin: z.number(),
+  name: z.string()
 })
 
 const DeleteQRCodeSchema = z.object({

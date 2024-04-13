@@ -26,7 +26,7 @@ export default function QRForm(props: QRFormProps) {
   async function handleSubmit(event: FormEvent<HTMLFormElement>, ref: React.RefObject<HTMLFormElement>) {
     event.preventDefault()
     const formData = new FormData(event.currentTarget)
-    const { url = '' } = Object.fromEntries(formData) as Record<string, string>
+    const { url = '', name = '' } = Object.fromEntries(formData) as Record<string, string>
     const margin = Number(inputMargin)
 
     if (!url) { setUrlError(true) }
@@ -36,7 +36,8 @@ export default function QRForm(props: QRFormProps) {
         url,
         bgColor,
         fgColor,
-        margin
+        margin,
+        name
       }, {
         onSuccess: () => {
           successToastHandler({ message: 'QR Code created successfully!' })
@@ -64,6 +65,16 @@ export default function QRForm(props: QRFormProps) {
           await handleSubmit(event, ref)
         }}
       >
+
+        <div className="form-field">
+          <label className="form-label">Name:</label>
+          <input
+            type="text"
+            name="name"
+            placeholder="Youtube Link"
+            className={`${inputClass} ${urlError ? 'input-error' : ''}`}
+            onFocus={() => setUrlError(false)} />
+        </div>
 
         <div className="form-field">
           <label className="form-label">Paste URL:</label>
