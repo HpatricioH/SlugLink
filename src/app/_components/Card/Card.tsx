@@ -48,9 +48,15 @@ export default function Card({ slug, description, id }: LinkProps) {
         <p className="text-sm font-thin">{description}</p>
       </div>
       <div className="relative flex gap-3 items-end justify-end *:fill-white *:w-5 *:h-5 *:cursor-pointer">
-        <CopySvg className="hover:fill-dark-violet" onClick={copyToClipboard} />
-        <EditSvg className="hover:fill-dark-violet" onClick={handleEditModal} />
-        <DeleteSvg className="hover:fill-dark-violet" onClick={handleDeleteModal} />
+        <span className="tooltip tooltip-bottom" data-tooltip="Copy">
+          <CopySvg className="hover:fill-dark-violet" onClick={copyToClipboard} />
+        </span>
+        <span className="tooltip tooltip-bottom" data-tooltip="Edit">
+          <EditSvg className="hover:fill-dark-violet" onClick={handleEditModal} />
+        </span>
+        <span className="tooltip tooltip-bottom" data-tooltip="Delete">
+          <DeleteSvg className="hover:fill-dark-violet" onClick={handleDeleteModal} />
+        </span>
       </div>
       <Modal
         title="Edit Link"
