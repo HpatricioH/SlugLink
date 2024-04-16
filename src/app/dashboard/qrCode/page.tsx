@@ -2,9 +2,6 @@ import { redirect } from "next/navigation";
 import QRCardContainer from "~/app/_components/QRCard/QRCardContainer";
 import { getServerAuthSession } from "~/server/auth";
 
-
-
-
 export default async function Page() {
   const session = await getServerAuthSession();
 
@@ -14,7 +11,7 @@ export default async function Page() {
 
   return (
     <div>
-      <QRCardContainer />
+      <QRCardContainer image={session.user.image} />
     </div>
   )
 }
