@@ -8,6 +8,8 @@ import Modal from "~/ui/Modal";
 import Delete from "../Delete/Delete";
 import { errorToastHandler, successToastHandler } from "~/utils/toastHandler";
 import Edit from "../Edit/Edit";
+import { useRouter } from "next/navigation";
+import { trpc } from "~/utils/trpc";
 
 interface LinkProps {
   slug: string;
@@ -19,6 +21,9 @@ interface LinkProps {
 export default function Card({ slug, description, id }: LinkProps) {
   const [deleteModal, setDeleteModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
+  const router = useRouter()
+
+  const deleteLinkMutation = trpc.link.deleteLink.useMutation();
 
   const handleDeleteModal = () => {
     setDeleteModal(true);
@@ -26,6 +31,16 @@ export default function Card({ slug, description, id }: LinkProps) {
 
   const handleEditModal = () => {
     setEditModal(true);
+  }
+
+  const handleDeleteLink = () => {
+    deleteLinkMutation.mutate({ id: id }, {
+      onSuccess: () => {
+        successToastHandler({ message: 'Link deleted successfully!' })
+        setDeleteModal(false);
+        router.refresh()
+      }
+    });
   }
 
   const copyToClipboard = async () => {
@@ -68,7 +83,12 @@ export default function Card({ slug, description, id }: LinkProps) {
         title="Are you sure you want to delete this link?"
         setState={setDeleteModal}
         state={deleteModal}>
-        <Delete setDeleteModal={setDeleteModal} id={id} />
+        <Delete
+          type='link'
+          setDeleteModal={setDeleteModal}
+          handleClick={handleDeleteLink}
+          isLoading={deleteLinkMutation.isLoading}
+        />
       </Modal>
     </section>
   )
