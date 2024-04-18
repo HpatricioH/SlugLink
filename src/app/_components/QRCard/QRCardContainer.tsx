@@ -18,12 +18,14 @@ export default async function QRCardContainer(props: QRContainterProps) {
       {getQRCodes.map((qrCode) => {
         return <QRCard
           key={qrCode.id}
+          id={qrCode.id}
           bgColor={qrCode.bgColor}
           fgColor={qrCode.fgColor}
           margin={qrCode.margin}
           url={qrCode.url}
           name={qrCode.name}
-          image={props.image} />
+          image={props.image}
+        />
       })}
     </div>
   )

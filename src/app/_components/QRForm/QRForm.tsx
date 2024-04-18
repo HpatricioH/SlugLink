@@ -29,7 +29,7 @@ export default function QRForm(props: QRFormProps) {
     const { url = '', name = '' } = Object.fromEntries(formData) as Record<string, string>
     const margin = Number(inputMargin)
 
-    if (!url) { setUrlError(true) }
+    if (!url || !name) { setUrlError(true) }
 
     if (url) {
       createQRCode.mutate({
