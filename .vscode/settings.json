@@ -1,8 +1,4 @@
 {
-  "cSpell.words": [
-    "zustand"
-  ],
-  "cSpell.ignoreWords": [
-    "qrcode"
-  ]
+  "cSpell.words": ["canva", "zustand"],
+  "cSpell.ignoreWords": ["qrcode"]
 }
