@@ -69,21 +69,14 @@ export default function QRCard(props: QRCardProps) {
       <Modal
         title="Download QR Code"
         state={downloadModal}
-        setState={setDownloadModal}
-      >
-        <DownloadQR url={props.url} margin={props.margin} bgColor={props.bgColor} fgColor={props.fgColor} />
+        setState={setDownloadModal}>
+        <DownloadQR url={props.url} margin={props.margin} bgColor={props.bgColor} fgColor={props.fgColor} setDownloadModal={setDownloadModal} />
       </Modal>
       <Modal
         title="Are you sure you want to delete this QR Code?"
         state={deleteModal}
-        setState={setDeleteModal}
-      >
-        <Delete
-          type="QR Code"
-          isLoading={deleteQRCode.isLoading}
-          setDeleteModal={setDeleteModal}
-          handleClick={handleDeleteQRCode}
-        />
+        setState={setDeleteModal}>
+        <Delete type="QR Code" isLoading={deleteQRCode.isLoading} setDeleteModal={setDeleteModal} handleClick={handleDeleteQRCode} />
       </Modal>
     </section>
   )
