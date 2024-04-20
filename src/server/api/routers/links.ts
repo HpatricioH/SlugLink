@@ -23,6 +23,10 @@ const GetLinkSchema = z.object({
   id: z.number(),
 })
 
+const GetLinkRedirectSchema = z.object({
+  slug: z.string(),
+})
+
 const DeleteLinkSchema = z.object({
   id: z.number(),
 })
@@ -63,6 +67,15 @@ export const linksRouter = createTRPCRouter({
     .query(async ({ ctx, input }) => {
       return ctx.db.link.findUnique({
         where: { id: input.id }
+      })
+    }),
+
+  // Get One Link for Redirect function 
+  getRedirectLink: protectedProcedure
+    .input(GetLinkRedirectSchema)
+    .query(async ({ ctx, input }) => {
+      return ctx.db.link.findUnique({
+        where: { slug: input.slug }
       })
     }),
 
