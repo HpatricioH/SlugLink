@@ -22,6 +22,7 @@ export default function Card({ slug, description, id }: LinkProps) {
   const [deleteModal, setDeleteModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const router = useRouter()
+  const slugLinkURL = process.env.NEXT_PUBLIC_SLUGLINK_URL
 
   const deleteLinkMutation = trpc.link.deleteLink.useMutation();
 
@@ -58,7 +59,7 @@ export default function Card({ slug, description, id }: LinkProps) {
 
   return (
     <section className="inline-block space-y-2 border border-white/10 bg-dark-midnight rounded-md relative px-4 py-2 w-full">
-      <p id={`copyLink${id}`}>{`https://sluglink.com/${slug}`}</p>
+      <p id={`copyLink${id}`}>{`${slugLinkURL}/${slug}`}</p>
       <div className="flex justify-between">
         <p className="text-sm font-thin">{description}</p>
       </div>
@@ -77,7 +78,7 @@ export default function Card({ slug, description, id }: LinkProps) {
         title="Edit Link"
         setState={setEditModal}
         state={editModal}>
-        <Edit id={id} setEditModal={setEditModal} />
+        <Edit id={id} setEditModal={setEditModal} slug={slug} />
       </Modal>
       <Modal
         title="Are you sure you want to delete this link?"
