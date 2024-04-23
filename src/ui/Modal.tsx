@@ -12,7 +12,7 @@ export default function Modal(props: ModalProps) {
 
   return (
     <Transition appear show={props.state} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={props.setState}>
+      <Dialog as="div" className="relative z-[70]" onClose={props.setState}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
