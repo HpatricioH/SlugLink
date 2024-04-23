@@ -13,7 +13,7 @@ export default async function Home() {
         </h1>
         <div className="flex flex-col items-center gap-2">
           <p className="text-2xl text-white/50 text-center text-wrap">
-            URL Shortener, QR Codes – Build, edit and manage your links.
+            URL Shortener, QR Codes: Build, edit, and manage your links.
           </p>
         </div>
         <Feature />
