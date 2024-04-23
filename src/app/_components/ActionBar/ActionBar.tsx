@@ -8,6 +8,7 @@ import Button from "~/utils/Button";
 import CreateLink from "../CreateLink/CreateLink";
 import QRForm from "../QRForm/QRForm";
 import SearchLinks from "../SearchLinks/SearchLinks";
+import SearchQRCodes from "../SearchQRCodes/SearchQRCodes";
 
 export default function ActionBar() {
   const [createModal, setCreateModal] = useState(false)
@@ -17,7 +18,10 @@ export default function ActionBar() {
   return (
     <div className="flex flex-col gap-3 md:flex-row  justify-between">
       <div >
-        <SearchLinks pathname={pathname} />
+        {pathname === '/dashboard' ?
+          <SearchLinks pathname={pathname} /> :
+          <SearchQRCodes pathname={pathname} />
+        }
       </div>
       <div className="flex flex-col md:flex-row gap-3">
         {pathname === '/dashboard' ?

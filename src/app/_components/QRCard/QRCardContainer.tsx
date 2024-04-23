@@ -2,20 +2,25 @@ import { api } from "~/trpc/server"
 import QRCard from "./QRCard"
 import NoLinks from "../NoLinks/NoLinks"
 
-interface QRContainterProps {
+interface QRContainerProps {
   image?: string | null | undefined;
+  query: string
 }
 
-export default async function QRCardContainer(props: QRContainterProps) {
+export default async function QRCardContainer(props: QRContainerProps) {
   const getQRCodes = await api.qrCode.getQRCodes.query()
 
-  if (getQRCodes.length === 0) {
-    return <NoLinks title="No QR Codes created!" />
+  const filteredQRCodes = getQRCodes.filter((code) => {
+    return code.name.toLowerCase().includes(props.query.toLowerCase())
+  })
+
+  if (filteredQRCodes.length === 0) {
+    return <NoLinks title="No QR Codes found!" />
   }
 
   return (
     <div className="mt-5 linkCard">
-      {getQRCodes.map((qrCode) => {
+      {filteredQRCodes.map((qrCode) => {
         return <QRCard
           key={qrCode.id}
           id={qrCode.id}
