@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import { Suspense } from "react";
 import QRCardContainer from "~/app/_components/QRCard/QRCardContainer";
 import { getServerAuthSession } from "~/server/auth";
 
@@ -17,8 +18,8 @@ export default async function Page({
   }
 
   return (
-    <div>
+    <Suspense fallback={<div className="skeleton-pulse"></div>}>
       <QRCardContainer image={session.user.image} query={query} />
-    </div>
+    </Suspense>
   )
 }
