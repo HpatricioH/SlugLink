@@ -7,6 +7,7 @@ import AddSvg from "~/utils/AddSvg";
 import Button from "~/utils/Button";
 import CreateLink from "../CreateLink/CreateLink";
 import QRForm from "../QRForm/QRForm";
+import SearchLinks from "../SearchLinks/SearchLinks";
 
 export default function ActionBar() {
   const [createModal, setCreateModal] = useState(false)
@@ -16,12 +17,7 @@ export default function ActionBar() {
   return (
     <div className="flex flex-col gap-3 md:flex-row  justify-between">
       <div >
-        <form action="">
-          <input
-            type="text"
-            placeholder="Search..."
-            className='input' />
-        </form>
+        <SearchLinks pathname={pathname} />
       </div>
       <div className="flex flex-col md:flex-row gap-3">
         {pathname === '/dashboard' ?
