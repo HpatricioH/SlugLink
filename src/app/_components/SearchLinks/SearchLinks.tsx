@@ -3,7 +3,7 @@
 import { useSearchParams, useRouter } from "next/navigation"
 import { useDebouncedCallback } from 'use-debounce'
 
-interface SearchProps {
+export interface SearchProps {
   pathname: string
 }
 
