@@ -2,8 +2,9 @@
 
 import { signIn } from "next-auth/react";
 import { useLoadingSession } from "~/store/loadingSession";
+import LoginSvg from "~/ui/svgs/LoginSvg";
 import Button from "~/utils/Button";
-import LoginSvg from "~/utils/LoginSvg";
+
 
 interface UserProps {
   user: {
@@ -13,7 +14,7 @@ interface UserProps {
 }
 
 
-export default function Auth({ user, session }: UserProps) {
+export default function Auth({ user }: UserProps) {
   const { loading, setLoading } = useLoadingSession();
 
   const handleSignIn = async () => {

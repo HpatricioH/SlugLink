@@ -1,4 +1,5 @@
-import GithubSvg from "~/utils/GithubSvg"
+import GithubSvg from "~/ui/svgs/GithubSvg";
+
 
 export default function Footer() {
   return (

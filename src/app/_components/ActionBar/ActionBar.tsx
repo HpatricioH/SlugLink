@@ -3,12 +3,13 @@
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import Modal from "~/ui/Modal";
-import AddSvg from "~/utils/AddSvg";
+
 import Button from "~/utils/Button";
 import CreateLink from "../CreateLink/CreateLink";
 import QRForm from "../QRForm/QRForm";
 import SearchLinks from "../SearchLinks/SearchLinks";
 import SearchQRCodes from "../SearchQRCodes/SearchQRCodes";
+import AddSvg from "~/ui/svgs/AddSvg";
 
 export default function ActionBar() {
   const [createModal, setCreateModal] = useState(false)

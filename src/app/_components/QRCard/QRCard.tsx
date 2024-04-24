@@ -3,13 +3,14 @@
 import Image from "next/image";
 import { useState } from "react";
 import Modal from "~/ui/Modal";
-import DeleteSvg from "~/utils/DeleteSvg";
-import DownloadSvg from "~/utils/DownloadSvg";
+
 import Delete from "../Delete/Delete";
 import { trpc } from "~/utils/trpc";
 import { successToastHandler } from "~/utils/toastHandler";
 import { useRouter } from "next/navigation";
 import DownloadQR from "../DownloadQRCode/DownloadQR";
+import DownloadSvg from "~/ui/svgs/DownloadSvg";
+import DeleteSvg from "~/ui/svgs/DeleteSvg";
 
 interface QRCardProps {
   id: number,

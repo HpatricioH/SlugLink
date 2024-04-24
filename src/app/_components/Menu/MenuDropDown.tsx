@@ -3,13 +3,14 @@
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { signOut } from "next-auth/react"
-import HamburgerSvg from "~/utils/HamburgerSvg";
-import LogoutSvg from '~/utils/LogoutSvg';
-import LinkSvg from '~/utils/LinkSvg';
 import Link from 'next/link';
 import Button from '~/utils/Button';
 import { useLoadingSession } from '~/store/loadingSession';
-import HomeSvg from '~/utils/HomeSvg';
+import HomeSvg from '~/ui/svgs/HomeSvg';
+import LinkSvg from '~/ui/svgs/LinkSvg';
+import LogoutSvg from '~/ui/svgs/LogoutSvg';
+import HamburgerSvg from '~/ui/svgs/HamburgerSvg';
+
 
 const menuOptions = [
   {

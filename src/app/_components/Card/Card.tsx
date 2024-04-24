@@ -1,15 +1,17 @@
 'use client'
 
 import { useState } from "react";
-import CopySvg from "~/utils/CopySvg";
-import DeleteSvg from "~/utils/DeleteSvg";
-import EditSvg from "~/utils/EditSvg";
+
 import Modal from "~/ui/Modal";
 import Delete from "../Delete/Delete";
 import { errorToastHandler, successToastHandler } from "~/utils/toastHandler";
 import Edit from "../Edit/Edit";
 import { useRouter } from "next/navigation";
 import { trpc } from "~/utils/trpc";
+import CopySvg from "~/ui/svgs/CopySvg";
+
+import DeleteSvg from "~/ui/svgs/DeleteSvg";
+import EditSvg from "~/ui/svgs/EditSvg";
 
 interface LinkProps {
   slug: string;

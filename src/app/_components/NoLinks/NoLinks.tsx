@@ -1,4 +1,5 @@
-import NoneSvg from "~/utils/NoneSvg";
+import NoneSvg from "~/ui/svgs/NoneSvg"
+
 
 interface NoLinksProps {
   title: string

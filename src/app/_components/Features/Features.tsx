@@ -1,6 +1,7 @@
 import FeatureCard from "~/ui/featureCard";
-import LinkSvg from "~/utils/LinkSvg";
-import QrSvg from "~/utils/QrSvg";
+import LinkSvg from "~/ui/svgs/LinkSvg";
+import QrSvg from "~/ui/svgs/QrSvg";
+
 
 const cardContent = [
   {

@@ -1,6 +1,7 @@
 import Link from "next/link";
-import CheckSvg from "~/utils/CheckSvg";
-import GetStartedSvg from "~/utils/GetStartedSvg";
+import CheckSvg from "./svgs/CheckSvg";
+import GetStartedSvg from "./svgs/GetStartedSvg";
+
 
 interface FeatureCardProps {
   title: string;
