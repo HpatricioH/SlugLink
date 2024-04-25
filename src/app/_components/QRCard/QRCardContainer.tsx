@@ -10,8 +10,8 @@ interface QRContainerProps {
 export default async function QRCardContainer(props: QRContainerProps) {
   const getQRCodes = await api.qrCode.getQRCodes.query()
 
-  const filteredQRCodes = getQRCodes.filter((code) => {
-    return code.name.toLowerCase().includes(props.query.toLowerCase())
+  const filteredQRCodes = getQRCodes?.filter((code) => {
+    return code?.name.toLowerCase().includes(props.query.toLowerCase())
   })
 
   if (filteredQRCodes.length === 0) {
