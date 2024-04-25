@@ -10,6 +10,9 @@ const config = {
   images: {
     domains: ["avatars.githubusercontent.com"],
   },
+  eslint: {
+    ignoreDuringBuilds: false,
+  },
 };
 
 const sentryWebpackPluginOptions = {
