@@ -20,7 +20,7 @@ export default async function QRCardContainer(props: QRContainerProps) {
 
   return (
     <div className="mt-5 linkCard">
-      {filteredQRCodes.map((qrCode) => {
+      {filteredQRCodes?.map((qrCode) => {
         return <QRCard
           key={qrCode.id}
           id={qrCode.id}
@@ -28,7 +28,7 @@ export default async function QRCardContainer(props: QRContainerProps) {
           fgColor={qrCode.fgColor}
           margin={qrCode.margin}
           url={qrCode.url}
-          name={qrCode.name || ''}
+          name={qrCode.name ?? ''}
           image={props.image}
         />
       })}
