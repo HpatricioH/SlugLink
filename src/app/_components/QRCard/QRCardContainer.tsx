@@ -28,7 +28,7 @@ export default async function QRCardContainer(props: QRContainerProps) {
           fgColor={qrCode.fgColor}
           margin={qrCode.margin}
           url={qrCode.url}
-          name={qrCode.name}
+          name={qrCode.name || ''}
           image={props.image}
         />
       })}
