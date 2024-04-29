@@ -14,7 +14,7 @@ interface FeatureCardProps {
 
 export default function FeatureCard({ title, description, icon, href, type, arrayFeatures }: FeatureCardProps) {
   return (
-    <div className='flex flex-col gap-6 w-72 border border-white/10 rounded-md p-[0.85rem] lg:w-80 bg-dark-midnight shadow-lg shadow-dark-violet/50'>
+    <div className='flex flex-col gap-5 w-72 border border-white/10 rounded-md p-[0.85rem] lg:w-80 bg-dark-midnight shadow-lg shadow-dark-violet/50'>
       <div className="flex gap-3 items-center">
         {icon}
         <h3 className="font-extrabold text-xl tracking-wide">{title}</h3>
@@ -34,7 +34,7 @@ export default function FeatureCard({ title, description, icon, href, type, arra
           ))}
         </ul>
       </div>
-      <div className="m-auto mt-7 mb-2">
+      <div className="m-auto mt-3 mb-1">
         <Link href={href}>
           <div className="btn btn-outline">
             <GetStartedSvg className="fill-white h-5 w-5 mr-1" />

@@ -35,7 +35,7 @@ const cardContent = [
 // TODO: if not logged in, show a modal to sign in into the app. 
 export default function Feature() {
   return (
-    <section className="grid gap-6 mt-8 grid-cols-1 sm:grid-cols-2 z-3">
+    <section className="grid gap-6 mt-2 grid-cols-1 sm:grid-cols-2 z-3">
       {cardContent.map((card, i) => {
         return <FeatureCard
           key={i}
