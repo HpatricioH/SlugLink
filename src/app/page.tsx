@@ -6,7 +6,7 @@ export default async function Home() {
   noStore();
 
   return (
-    <main className="h-[calc(100vh-8rem)] flex flex-col items-center pb-[3.60rem] transition-all duration-100 bg-dark-midnight text-white " style={{ backgroundImage: "url(/icons/bg.svg)", height: "100%" }}>
+    <main className="h-[calc(100vh-8rem)] flex flex-col items-center pb-[3.50rem] transition-all duration-100 bg-dark-midnight text-white " style={{ backgroundImage: "url(/icons/bg.svg)", height: "100%" }}>
       <div className="container flex flex-col items-center justify-center gap-3 px-4 py-1">
         <h1 className="text-5xl font-bold tracking-tight sm:text-[5rem]">
           Slug<span className="text-dark-violet">Link</span>
