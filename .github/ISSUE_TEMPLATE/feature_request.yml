@@ -12,25 +12,26 @@ body:
         - label: I have checked "open" AND "closed" issues and this is not a duplicate
           required: true
   - type: textarea
-attributes:
-  label: Please describe the problem or functionality gap your feature request addresses.
-  description: Provide a clear and concise description of the problem or functionality gap (e.g., "I'm always frustrated when [...]").
-validations:
-  required: true
+    id: description
+    attributes:
+      label: Please describe the problem or functionality gap your feature request addresses.
+      description: Provide a clear and concise description of the problem or functionality gap.
+    validations:
+      required: true
   - type: textarea
-id: description
-attributes:
-  label: Proposed Solution
-  description: Please provide a clear description of the enhancement you propose. Include relevant information and resources, such as another project's implementation of this feature.
-validations:
-  required: true
+    id: proposed_solution
+    attributes:
+      label: Proposed Solution
+      description: Please provide a clear description of the enhancement you propose. Include relevant information and resources, such as another project's implementation of this feature.
+    validations:
+      required: true
   - type: textarea
-id: screenshots
-attributes:
-  label: Screenshots
-  description: If applicable, please provide screenshots showing the before and/or after the proposed changes.
-validations:
-  required: false
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: If applicable, please provide screenshots showing the before and/or after the proposed changes.
+    validations:
+      required: false
   - type: dropdown
     id: assignee
     attributes:
