@@ -1,0 +1,73 @@
+name: 🐛 Bug | 🛠️ Fix
+description: Report an issue to help improve the project.
+title: "[FIX] <description>"
+labels: ["🛠 fix"]
+body:
+  - type: checkboxes
+    id: duplicates
+    attributes:
+      label: Has this bug been raised before?
+      description: This way we can avoid addressing duplicated issues.
+      options:
+        - label: I have checked "open" AND "closed" issues and this is not a duplicate
+          required: true
+  - type: input
+    attributes:
+      label: Where did you encounter this issue?
+      description: Please specify whether it occurred in your local development environment or on the slug-link.vercel.app production site.
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: Please provide a detailed description of the bug you have encountered. Include relevant information such as steps to reproduce the bug.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction Steps
+      description: Please provide a numbered list of the exact steps taken to trigger the buggy behavior. This will help us recreate the issue.
+      value: |
+        If you know the steps, follow the format below and provide steps to reproduce:
+
+        For example:
+
+        1. Go to <replace your> page.
+        2. On the top right side, click on the menu dropdown.
+        3. Some menu items are not working properly.
+        4. Continue...
+
+        If you don't know the exact steps, include any relevant details such as:
+
+        - What page you were on...
+        - What you were trying to do...
+        - What went wrong...
+    validations:
+      required: true
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Attach Screenshots
+      description: If applicable, please provide screenshots to help illustrate the issue.
+    validations:
+      required: false
+  - type: dropdown
+    id: assignee
+    attributes:
+      label: Would you like to work on this issue?
+      multiple: false
+      options:
+        - "No"
+        - "Yes"
+      default: 0
+    validations:
+      required: false
+  - type: textarea
+    id: extrainfo
+    attributes:
+      label: If you answered "Yes" to the previous question, please explain how you would technically implement this.
+      description: You may reference any existing code as an example.
+    validations:
+      required: false
