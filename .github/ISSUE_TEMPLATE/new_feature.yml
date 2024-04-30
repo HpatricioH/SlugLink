@@ -1,0 +1,51 @@
+name: 🚀 Feature Request
+description: Have a new idea or feature for SlugLink? Let us know!
+title: "[FEATURE] <description>"
+labels: ["💡 New Feature"]
+body:
+  - type: checkboxes
+    id: duplicates
+    attributes:
+      label: Has this bug been raised before?
+      description: This way we can avoid addressing duplicated issues.
+      options:
+        - label: I have checked "open" AND "closed" issues and this is not a duplicate
+          required: true
+  - type: textarea
+attributes:
+  label: Please describe the problem or functionality gap your feature request addresses.
+  description: Provide a clear and concise description of the problem or functionality gap (e.g., "I'm always frustrated when [...]").
+validations:
+  required: true
+  - type: textarea
+id: description
+attributes:
+  label: Proposed Solution
+  description: Please provide a clear description of the enhancement you propose. Include relevant information and resources, such as another project's implementation of this feature.
+validations:
+  required: true
+  - type: textarea
+id: screenshots
+attributes:
+  label: Screenshots
+  description: If applicable, please provide screenshots showing the before and/or after the proposed changes.
+validations:
+  required: false
+  - type: dropdown
+    id: assignee
+    attributes:
+      label: Would you like to work on this issue?
+      multiple: false
+      options:
+        - "No"
+        - "Yes"
+      default: 0
+    validations:
+      required: false
+  - type: textarea
+    id: extrainfo
+    attributes:
+      label: If you answered "Yes" to the previous question, please explain how you would technically implement this.
+      description: You may reference any existing code as an example.
+    validations:
+      required: false
