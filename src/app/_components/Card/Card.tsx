@@ -51,7 +51,7 @@ export default function Card({ slug, description, id }: LinkProps) {
       const copyLinkElement = document.getElementById(`copyLink${id}`);
       const textToCopy = copyLinkElement?.textContent ?? '';
 
-      await navigator.clipboard.writeText(textToCopy);
+      await navigator.clipboard.writeText(`${slugLinkURL + textToCopy}`);
     } catch (err) {
       errorToastHandler({ message: 'Failed to copy link to clipboard!' });
     } finally {
@@ -61,7 +61,7 @@ export default function Card({ slug, description, id }: LinkProps) {
 
   return (
     <section className="inline-block space-y-2 border border-white/10 bg-dark-midnight rounded-md relative px-4 py-2 w-full">
-      <p id={`copyLink${id}`}>{`${slugLinkURL}/${slug}`}</p>
+      <p id={`copyLink${id}`}>{`/${slug}`}</p>
       <div className="flex justify-between">
         <p className="text-sm font-thin">{description}</p>
       </div>
