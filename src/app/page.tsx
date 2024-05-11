@@ -7,7 +7,7 @@ export default async function Home() {
 
   return (
     <main className="h-[calc(100vh-8rem)] flex flex-col items-center pb-[7.60rem] transition-all duration-100 bg-dark-midnight text-white" style={{ backgroundImage: "url(/icons/bg.svg)", height: "100%" }}>
-      <div className="container flex flex-col items-center justify-center gap-5 px-4 py-12">
+      <div className="container flex flex-col items-center justify-center gap-5 px-4 pb-3 pt-6 ">
         <h1 className="text-5xl font-bold tracking-tight sm:text-[5rem]">
           Slug<span className="text-dark-violet">Link</span>
         </h1>
