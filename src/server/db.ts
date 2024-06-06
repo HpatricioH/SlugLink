@@ -8,17 +8,19 @@ const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined;
 };
 
-const initializePrisma = (): PrismaClient => {
-  const libsql = createClient({
-    url: env.DATABASE_URL,
-    authToken: env.DATABASE_TOKEN,
+const libsql = createClient({
+  url: env.DATABASE_URL ?? "",
+  authToken: env.DATABASE_TOKEN ?? "",
+});
+
+const adapter = new PrismaLibSQL(libsql);
+
+export const db =
+  globalForPrisma.prisma ??
+  new PrismaClient({
+    adapter,
+    log:
+      env.NODE_ENV === "development" ? ["query", "error", "warn"] : ["error"],
   });
-
-  const adapter = new PrismaLibSQL(libsql);
-  return new PrismaClient({adapter});
-}
-
-export const db = globalForPrisma.prisma ?? initializePrisma();
-  
 
 if (env.NODE_ENV !== "production") globalForPrisma.prisma = db;
