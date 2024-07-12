@@ -14,7 +14,7 @@ export default async function Page({
   const session = await getServerAuthSession();
 
   if (!session) {
-    redirect('/')
+    redirect('/login')
   }
 
   return (

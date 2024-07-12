@@ -1,6 +1,7 @@
 'use client'
 
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { useLoadingSession } from "~/store/loadingSession";
 import LoginSvg from "~/ui/svgs/LoginSvg";
 import Button from "~/utils/Button";
@@ -15,18 +16,10 @@ interface UserProps {
 
 
 export default function Auth({ user }: UserProps) {
-  const { loading, setLoading } = useLoadingSession();
+  const route = useRouter()
 
   const handleSignIn = async () => {
-    try {
-      setLoading(true);
-      const response = await signIn("github", { callbackUrl: '/dashboard' })
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
+    route.push('/login')
   }
 
   if (user !== undefined) {
@@ -40,11 +33,9 @@ export default function Auth({ user }: UserProps) {
   return (
     <Button
       onClick={handleSignIn}
-      className={`flex gap-1 hover:text-dark-violet *:hover:fill-dark-violet ${loading ? 'btn-loading' : ''} `}>
+      className="flex gap-1 hover:text-dark-violet *:hover:fill-dark-violet" >
       Sign in
-      {loading ?
-        "" :
-        <LoginSvg className='fill-white h-5 w-5 self-center' />}
+      <LoginSvg className='fill-white h-5 w-5 self-center' />
     </Button>
   )
 }
