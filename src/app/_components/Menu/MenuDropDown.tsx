@@ -36,7 +36,7 @@ export default function MenuDropDown() {
       setLoading(true)
       await signOut({ callbackUrl: '/' })
     } catch (error) {
-      console.log(error);
+      throw new Error('Error signing out')
     } finally {
       setLoading(false)
     }

@@ -12,7 +12,7 @@ interface DeleteProps {
 
 export default function Delete(props: DeleteProps) {
 
-  const handleCloseModal = () => {
+  const handleCloseModal = async () => {
     props.setDeleteModal(false);
   }
 

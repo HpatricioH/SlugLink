@@ -1,4 +1,4 @@
-import { redirect } from 'next/navigation'
+import { permanentRedirect } from 'next/navigation';
 import { api } from '~/trpc/server';
 
 export default async function Page({
@@ -6,12 +6,18 @@ export default async function Page({
 }: {
   params: { id: string }
 }) {
-  const { id } = params
-  const getLink = await api.link.getRedirectLink.query({ slug: id });
+  try {
+    const { id } = params;
+    const getLink = await api.link.getRedirectLink.query({ slug: id });
 
-  if (!getLink) {
-    redirect('/')
+    if (!getLink?.url) {
+      permanentRedirect('/');
+    }
+
+    permanentRedirect(getLink?.url ?? '');
+  } catch (error) {
+    if ((error as Error).message === 'UNAUTHORIZED') {
+      permanentRedirect('/login');
+    }
   }
-
-  redirect(getLink?.url ?? '')
 }
