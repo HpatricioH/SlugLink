@@ -26,12 +26,12 @@ export default function ActionBar() {
       </div>
       <div className="flex flex-col md:flex-row gap-3">
         {pathname === '/dashboard' ?
-          <Button onClick={() => setCreateModal(true)}>
+          <Button onClick={async () => setCreateModal(true)}>
             <div className="flex gap-1">
               <AddSvg className="fill-white h-4 self-center" /> Create new Link
             </div>
           </Button> :
-          <Button onClick={() => setQrModal(true)}>
+          <Button onClick={async () => setQrModal(true)}>
             <div className="flex gap-1">
               <AddSvg className="fill-white h-4 self-center" /> Create new QR Code
             </div>

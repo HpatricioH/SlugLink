@@ -1,8 +1,6 @@
 'use client'
 
-import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { useLoadingSession } from "~/store/loadingSession";
 import LoginSvg from "~/ui/svgs/LoginSvg";
 import Button from "~/utils/Button";
 

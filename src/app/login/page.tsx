@@ -9,11 +9,11 @@ export default function LoginPage() {
   const [loadingGithub, setLoadingGithub] = useState(false)
 
 
-  const handleSignInGoogle = async () => {
+  const handleSignInGoogle = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
     try {
       setLoadingGoogle(true)
-      const response = await signIn('google', { callbackUrl: '/dashboard' })
-      console.log(response);
+      await signIn('google', { callbackUrl: '/dashboard' })
     } catch (error) {
       throw new Error('Error signing in with Google')
     } finally {
@@ -21,11 +21,11 @@ export default function LoginPage() {
     }
   }
 
-  const handleSignInGithub = async () => {
+  const handleSignInGithub = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
     try {
       setLoadingGithub(true)
-      const response = await signIn('github', { callbackUrl: '/dashboard' })
-      console.log(response)
+      await signIn('github', { callbackUrl: '/dashboard' })
     } catch (error) {
       throw new Error('Error signing in with Github')
     } finally {
@@ -40,7 +40,7 @@ export default function LoginPage() {
           <p className="text-center text-xl tracking-wide pb-4">Sign in with</p>
           <div className="flex w-full flex-col gap-3">
             <Button
-              onClick={handleSignInGithub}
+              onClick={(e: React.MouseEvent<HTMLButtonElement>) => handleSignInGithub(e)}
               className={`btn gap-2 bg-gray-5 ${loadingGithub ? 'btn-loading' : ''}`}>
               {loadingGithub ?
                 '' :
@@ -53,7 +53,7 @@ export default function LoginPage() {
               <span>Sign up with github</span>
             </Button>
             <Button
-              onClick={handleSignInGoogle}
+              onClick={(e: React.MouseEvent<HTMLButtonElement>) => handleSignInGoogle(e)}
               className={`btn gap-2 bg-gray-5 ${loadingGoogle ? 'btn-loading' : ''}`}>
               {loadingGoogle ?
                 '' :
