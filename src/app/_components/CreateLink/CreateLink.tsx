@@ -16,7 +16,6 @@ export default function CreateLink(props: CreateLinkProps) {
   const [slugError, setSlugError] = useState(false)
   const ref = useRef<HTMLFormElement>(null)
   const router = useRouter()
-  const slugLinkURL = process.env.NEXT_PUBLIC_SLUGLINK_URL
 
   const createLink = api.link.create.useMutation()
 
@@ -81,7 +80,7 @@ export default function CreateLink(props: CreateLinkProps) {
           <input
             type="text"
             name='slug'
-            placeholder={`${slugLinkURL}/your-link`}
+            placeholder={`myLink`}
             className={`input input-block ${slugError ? 'input-error' : ''}`}
             onFocus={() => setSlugError(false)} />
         </div>
