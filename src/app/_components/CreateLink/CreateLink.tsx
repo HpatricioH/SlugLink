@@ -14,25 +14,28 @@ interface CreateLinkProps {
 export default function CreateLink(props: CreateLinkProps) {
   const [urlError, setUrlError] = useState(false)
   const [slugError, setSlugError] = useState(false)
-  const [randomSlug, setRandomSlug] = useState("")
   const [slug, setSlug] = useState('');
   const ref = useRef<HTMLFormElement>(null)
   const router = useRouter()
 
   const createLink = api.link.create.useMutation()
 
-  const randomizeSlug = async (e: React.MouseEvent<HTMLButtonElement>): Promise<void> => {
-    e.preventDefault()
+  const generateRandomSlug = (): string => {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
     let result = ''
     const length = 5
     for (let i = 0; i < length; i++) {
       result += characters.charAt(Math.floor(Math.random() * characters.length))
     }
-    setRandomSlug(result)
+    return result
   }
 
-  console.log(randomSlug)
+  const randomizeSlug = async (e: React.MouseEvent<HTMLButtonElement>): Promise<void> => {
+    e.preventDefault()
+    const newSlug = generateRandomSlug()
+    setSlug(newSlug)
+  }
+
   async function onSubmit(event: FormEvent<HTMLFormElement>, ref: React.RefObject<HTMLFormElement>) {
     event.preventDefault()
     const formData = new FormData(event.currentTarget)
@@ -97,12 +100,13 @@ export default function CreateLink(props: CreateLinkProps) {
               name='slug'
               placeholder={`myLink`}
               className={`input input-block ${slugError ? 'input-error' : ''}`}
-              defaultValue={randomSlug}
+              value={slug}
+              onChange={(e) => setSlug(e.target.value)}
               onFocus={() => setSlugError(false)} />
             <Button
               className="absolute right-0"
               type="button"
-              onClick={(e: React.MouseEvent<HTMLButtonElement>) => randomizeSlug(e)}>
+              onClick={randomizeSlug}>
               Randomize
             </Button>
           </div>
