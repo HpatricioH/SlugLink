@@ -14,11 +14,25 @@ interface CreateLinkProps {
 export default function CreateLink(props: CreateLinkProps) {
   const [urlError, setUrlError] = useState(false)
   const [slugError, setSlugError] = useState(false)
+  const [randomSlug, setRandomSlug] = useState("")
+  const [slug, setSlug] = useState('');
   const ref = useRef<HTMLFormElement>(null)
   const router = useRouter()
 
   const createLink = api.link.create.useMutation()
 
+  const randomizeSlug = async (e: React.MouseEvent<HTMLButtonElement>): Promise<void> => {
+    e.preventDefault()
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+    let result = ''
+    const length = 5
+    for (let i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * characters.length))
+    }
+    setRandomSlug(result)
+  }
+
+  console.log(randomSlug)
   async function onSubmit(event: FormEvent<HTMLFormElement>, ref: React.RefObject<HTMLFormElement>) {
     event.preventDefault()
     const formData = new FormData(event.currentTarget)
@@ -77,12 +91,21 @@ export default function CreateLink(props: CreateLinkProps) {
         </div>
         <div className="form-field mt-1">
           <label className="form-label">Customize your link:</label>
-          <input
-            type="text"
-            name='slug'
-            placeholder={`myLink`}
-            className={`input input-block ${slugError ? 'input-error' : ''}`}
-            onFocus={() => setSlugError(false)} />
+          <div className="flex relative">
+            <input
+              type="text"
+              name='slug'
+              placeholder={`myLink`}
+              className={`input input-block ${slugError ? 'input-error' : ''}`}
+              defaultValue={randomSlug}
+              onFocus={() => setSlugError(false)} />
+            <Button
+              className="absolute right-0"
+              type="button"
+              onClick={(e: React.MouseEvent<HTMLButtonElement>) => randomizeSlug(e)}>
+              Randomize
+            </Button>
+          </div>
         </div>
         <div className="form-field mt-1">
           <label className="form-label">Description (Optional):</label>
