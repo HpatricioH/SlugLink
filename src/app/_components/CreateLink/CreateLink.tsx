@@ -45,10 +45,12 @@ export default function CreateLink(props: CreateLinkProps) {
       description = ''
     } = Object.fromEntries(formData) as Record<string, string>
 
-    if (slug === '') { setSlugError(true) }
+    const slugValidation = /^[A-Za-z0-9]{5}$/;
+
+    if (slug === '' || !slugValidation.test(slug)) { setSlugError(true) }
     if (!url || url.trim() === '') { setUrlError(true) }
 
-    if (url && slug) {
+    if (url && slug && slugValidation.test(slug)) {
       createLink.mutate({
         url,
         slug,
@@ -99,12 +101,12 @@ export default function CreateLink(props: CreateLinkProps) {
               type="text"
               name='slug'
               placeholder={`myLink`}
-              className={`input input-block ${slugError ? 'input-error' : ''}`}
+              className={`input input-block pr-28 ${slugError ? 'input-error' : ''}`}
               value={slug}
               onChange={(e) => setSlug(e.target.value)}
               onFocus={() => setSlugError(false)} />
             <Button
-              className="absolute right-0"
+              className={`absolute right-0 top-0 bottom-0 px-4 ${slugError ? 'input-error' : ''}`}
               type="button"
               onClick={randomizeSlug}>
               Randomize
