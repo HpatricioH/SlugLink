@@ -29,9 +29,11 @@ export default function RootLayout({
       <body className={`font-sans ${inter.variable}`}>
         <TRPCReactProvider>
           <ToastContainer />
-          <Header />
-          <div>{children}</div>
-          <Footer />
+          <div className="grid min-h-dvh grid-row-[auto 1fr auto]">
+            <Header />
+            <div>{children}</div>
+            <Footer />
+          </div>
         </TRPCReactProvider>
       </body>
     </html>
