@@ -5,7 +5,7 @@ export default function Navbar() {
   const pathname = usePathname()
 
   return (
-    <nav className="border-b-2 border-white/10 pt-3">
+    <nav className="border-b-2 border-white/10">
       <ul className="navbar-start">
         <li>
           <Link href={'/dashboard'} className={`${pathname === '/dashboard' ? 'text-dark-violet' : ''} navbar-item`}>Links</Link>
