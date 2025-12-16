@@ -1,24 +1,19 @@
 import { PrismaClient } from "../../prisma/prisma/client";
-import { PrismaBetterSqlite3 } from "@prisma/adapter-better-sqlite3";
-// import { PrismaLibSql } from '@prisma/adapter-libsql'
-import { createClient } from "@libsql/client";
+import { PrismaLibSql } from '@prisma/adapter-libsql'
 
 import { env } from "~/env";
 
-const DATABASE_URL = String(env.DATABASE_URL);
-const DATABASE_TOKEN: string | undefined =
-  env.DATABASE_TOKEN ? String(env.DATABASE_TOKEN) : undefined;
+const DATABASE_URL = env.DATABASE_URL;
+const DATABASE_TOKEN =env.DATABASE_TOKEN || undefined;
 
 const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined;
-};
+}; 
 
-const libsql = createClient({
+const adapter = new PrismaLibSql({
   url: DATABASE_URL,
-  authToken: DATABASE_TOKEN,
-});
-
-const adapter = new PrismaBetterSqlite3(libsql);
+  authToken: DATABASE_TOKEN
+})
 
 export const db =
   globalForPrisma.prisma ??
