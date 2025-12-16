@@ -9,7 +9,7 @@ export default async function Header() {
   const session = await getServerAuthSession();
 
   return (
-    <header className="bg-dark-midnight text-white sticky top-0 w-full duration-300 z-50 flex justify-center items-center">
+    <header className="bg-dark-midnight text-white sticky top-0 w-full duration-300 z-50 flex justify-center items-center py-2">
       <div className="flex container pl-4 pr-4 items-center justify-between mx-auto">
         <Link href='/'>
           <Image
