@@ -1,3 +1,4 @@
+import "server-only";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import {
   getServerSession,

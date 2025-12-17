@@ -8,10 +8,10 @@
  *
  * 🟢 You can import this file directly.
  */
-export type * from './models/Link'
-export type * from './models/QRCode'
-export type * from './models/Account'
-export type * from './models/Session'
-export type * from './models/User'
-export type * from './models/VerificationToken'
-export type * from './commonInputTypes'
+export type * from './models/Link.js'
+export type * from './models/QRCode.js'
+export type * from './models/Account.js'
+export type * from './models/Session.js'
+export type * from './models/User.js'
+export type * from './models/VerificationToken.js'
+export type * from './commonInputTypes.js'
