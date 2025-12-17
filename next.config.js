@@ -10,6 +10,49 @@ const config = {
   images: {
     domains: ["avatars.githubusercontent.com"],
   },
+  experimental: {
+    // Prevent Next from bundling these server-only deps (fixes README.md/LICENSE parse crashes)
+    serverComponentsExternalPackages: [
+      "@libsql/client",
+      "@libsql/hrana-client",
+      "libsql",
+    ],
+  },
+  webpack(config, { isServer }) {
+    // Treat README / LICENSE / .d.ts as raw text so @libsql package docs and types do not break bundling
+    config.module?.rules?.push({
+      test: /(LICENSE|README|\.md|\.d\.ts)$/i,
+      type: "asset/source",
+    });
+
+    // Allow .js imports to resolve to .ts when the .js file is not emitted (covers prisma client output in ./prisma)
+    config.resolve = config.resolve || {};
+    config.resolve.extensionAlias = {
+      ".js": [".ts", ".tsx", ".js"],
+      ".mjs": [".mts", ".mjs"],
+      ".cjs": [".cts", ".cjs"],
+    };
+
+    // Skip bundling native .node binaries; leave them to be required at runtime
+    config.externals = config.externals || [];
+    config.externals.push(({ request }, callback) => {
+      if (request?.endsWith(".node"))
+        return callback(null, "commonjs " + request);
+      callback();
+    });
+
+    // Keep libsql packages external on the server so requireNative isn’t bundled
+    if (isServer) {
+      config.externals.push({
+        libsql: "commonjs libsql",
+        "@libsql/client": "commonjs @libsql/client",
+        "@libsql/core": "commonjs @libsql/core",
+        "@libsql/hrana-client": "commonjs @libsql/hrana-client",
+      });
+    }
+
+    return config;
+  },
 };
 
 const sentryWebpackPluginOptions = {
