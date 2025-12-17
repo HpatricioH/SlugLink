@@ -1,19 +1,17 @@
-import { PrismaClient } from "../../prisma/prisma/client";
+import "server-only";
+import { PrismaClient } from "./../../prisma/prisma/client";
 import { PrismaLibSql } from '@prisma/adapter-libsql'
 
 import { env } from "~/env";
-
-const DATABASE_URL = env.DATABASE_URL;
-const DATABASE_TOKEN =env.DATABASE_TOKEN || undefined;
 
 const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined;
 }; 
 
 const adapter = new PrismaLibSql({
-  url: DATABASE_URL,
-  authToken: DATABASE_TOKEN
-})
+  url: env.DATABASE_URL,
+  authToken: env.DATABASE_TOKEN ?? undefined,
+});
 
 export const db =
   globalForPrisma.prisma ??
