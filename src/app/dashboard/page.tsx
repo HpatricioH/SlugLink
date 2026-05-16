@@ -3,14 +3,16 @@ import { getServerAuthSession } from "~/server/auth";
 import CardContainer from "../_components/Card/CardContainer";
 import { Suspense } from "react";
 
+export type PageProps = {
+  searchParams: Promise<{
+    query?: string 
+  }>
+}
+
 export default async function Page({
   searchParams,
-}: {
-  searchParams?: {
-    query?: string;
-  }
-}) {
-  const query = searchParams?.query ?? ''
+}: PageProps) {
+  const query = await searchParams
   const session = await getServerAuthSession();
 
   if (!session) {
@@ -19,7 +21,7 @@ export default async function Page({
 
   return (
     <Suspense fallback={<div className="skeleton-pulse"></div>}>
-      <CardContainer query={query} />
+      <CardContainer query={query.query} />
     </Suspense>
   )
 }

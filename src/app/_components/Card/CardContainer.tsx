@@ -2,11 +2,11 @@ import { api } from "~/trpc/server";
 import NoLinks from "../NoLinks/NoLinks";
 import Card from "./Card";
 
-export default async function CardContainer({ query }: { query: string }) {
+export default async function CardContainer({ query }: { query: string | undefined}) {
   const getLinks = await api.link.getLinks.query();
 
   const filteredLinks = getLinks?.filter((link) => {
-    return link?.slug?.toLowerCase()?.includes(query.toLowerCase())
+    return link?.slug?.toLowerCase()?.includes(query?.toLowerCase() ?? "")
   })
 
   if (filteredLinks.length === 0) {
