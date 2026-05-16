@@ -9,17 +9,21 @@ import { withSentryConfig } from "@sentry/nextjs";
 /** @type {import("next").NextConfig} */
 const config = {
   images: {
-    domains: ["avatars.githubusercontent.com"],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'avatars.githubusercontent.com',
+      },
+    ],
   },
 
-  experimental: {
     // Prevent Next from bundling these server-only deps (fixes README.md/LICENSE parse crashes)
-    serverComponentsExternalPackages: [
+  serverExternalPackages: [
       "@libsql/client",
       "@libsql/hrana-client",
       "libsql",
     ],
-  },
+
 
   webpack(webpackConfig, { isServer }) {
     const config = webpackConfig;
