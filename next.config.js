@@ -6,7 +6,7 @@ await import("./src/env.js");
 import { withSentryConfig } from "@sentry/nextjs";
 /* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-return */
 
-/** @type {import("next").NextConfig} */
+/** @type {import("next").NextConfig & { rewrites?: () => Promise<[]> }} */
 const config = {
   images: {
     remotePatterns: [
@@ -24,6 +24,9 @@ const config = {
       "libsql",
     ],
 
+  async rewrites() {
+    return []
+  },
 
   webpack(webpackConfig, { isServer }) {
     const config = webpackConfig;
