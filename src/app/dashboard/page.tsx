@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { getServerAuthSession } from "~/server/auth";
 import CardContainer from "../_components/Card/CardContainer";
 import { Suspense } from "react";
+export const dynamic = "force-dynamic";
 
 export type PageProps = {
   searchParams: Promise<{

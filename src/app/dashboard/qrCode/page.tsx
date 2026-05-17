@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import QRCardContainer from "~/app/_components/QRCard/QRCardContainer";
 import { getServerAuthSession } from "~/server/auth";
 import type { PageProps } from "../page";
+export const dynamic = "force-dynamic";
 
 export default async function Page({
   searchParams,
