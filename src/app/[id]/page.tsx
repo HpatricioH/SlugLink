@@ -1,13 +1,15 @@
 import { permanentRedirect } from 'next/navigation';
 import { api } from '~/trpc/server';
 
-export default async function Page({
-  params
-}: {
-  params: { id: string }
-}) {
+type PageProps = {
+  params: Promise<{
+    id: string
+  }>
+}
+
+export default async function Page({ params }:PageProps) {
   try {
-    const { id } = params;
+    const { id } = await params;
     const getLink = await api.link.getRedirectLink.query({ slug: id });
 
     if (!getLink?.url) {

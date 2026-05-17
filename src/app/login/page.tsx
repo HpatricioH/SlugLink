@@ -13,7 +13,8 @@ export default function LoginPage() {
     e.preventDefault()
     try {
       setLoadingGoogle(true)
-      await signIn('google', { callbackUrl: '/dashboard' })
+      const result = await signIn('google', { callbackUrl: '/dashboard' })
+      console.log("results Test: ", result?.status)
     } catch (error) {
       throw new Error('Error signing in with Google')
     } finally {

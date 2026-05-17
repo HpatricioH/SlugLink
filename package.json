@@ -4,10 +4,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "next build",
+    "build": "next build --webpack",
     "db:push": "prisma db push",
     "db:studio": "prisma studio",
-    "dev": "next dev",
+    "dev": "next dev --webpack",
     "postinstall": "prisma generate",
     "lint": "next lint",
     "start": "next start"
@@ -26,11 +26,11 @@
     "@trpc/next": "^10.43.6",
     "@trpc/react-query": "^10.43.6",
     "@trpc/server": "^10.43.6",
-    "next": "^14.2.35",
+    "next": "^16.2.6",
     "next-auth": "^4.24.5",
     "next-qrcode": "^2.5.1",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
     "react-toastify": "^10.0.5",
     "rippleui": "^1.12.1",
     "server-only": "^0.0.1",
@@ -59,5 +59,5 @@
   "ct3aMetadata": {
     "initVersion": "7.26.0"
   },
-  "packageManager": "pnpm@9.0.6"
+  "packageManager": "pnpm@11.1.1"
 }

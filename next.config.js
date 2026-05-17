@@ -6,19 +6,26 @@ await import("./src/env.js");
 import { withSentryConfig } from "@sentry/nextjs";
 /* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-return */
 
-/** @type {import("next").NextConfig} */
+/** @type {import("next").NextConfig & { rewrites?: () => Promise<[]> }} */
 const config = {
   images: {
-    domains: ["avatars.githubusercontent.com"],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'avatars.githubusercontent.com',
+      },
+    ],
   },
 
-  experimental: {
     // Prevent Next from bundling these server-only deps (fixes README.md/LICENSE parse crashes)
-    serverComponentsExternalPackages: [
+  serverExternalPackages: [
       "@libsql/client",
       "@libsql/hrana-client",
       "libsql",
     ],
+
+  async rewrites() {
+    return []
   },
 
   webpack(webpackConfig, { isServer }) {
